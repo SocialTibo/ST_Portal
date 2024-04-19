@@ -1,0 +1,10 @@
+<template>
+    <template if:true={isDisplay}>
+        <template if:true={shouldDisplayHeader}>
+            <c-s-t-header-buyer metadata={metadata}></c-s-t-header-buyer>
+        </template>
+        <template if:false={shouldDisplayHeader}>
+            <c-s-t-header-s-e></c-s-t-header-s-e>
+        </template>
+    </template>
+</template>
