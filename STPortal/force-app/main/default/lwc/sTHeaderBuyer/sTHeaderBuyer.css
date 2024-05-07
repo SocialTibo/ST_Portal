@@ -1,1 +1,36 @@
 .dummyClass{color:black;}
+
+.logo {
+		width: 100px;   
+		height: auto;  
+}
+.header-container {
+		display: flex;
+		align-items: center;
+		justify-content: center; 
+		margin: 0 auto; 
+		width: fit-content; 
+}
+.menu{
+		display: flex;
+		flex-direction: row;
+		padding: 0 140px;
+		gap: 30px;
+}
+.menu .button {
+		margin: 0 10px;
+
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.nav-button:hover {
+    text-decoration: none;
+}
