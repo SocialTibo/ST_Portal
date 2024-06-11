@@ -1,0 +1,54 @@
+<template>
+		<div class="results-card">
+				<!-- <div class="filters">
+						<lightning-input
+								label="Keyword"
+								value={keyword}
+								onchange={handleKeywordChange}>
+						</lightning-input>
+						<lightning-input
+								label="Service Area"
+								value={serviceArea}
+								onchange={handleServiceAreaChange}>
+						</lightning-input>
+						<lightning-input
+								label="Category"
+								value={category}
+								onchange={handleCategoryChange}>
+						</lightning-input>
+						<lightning-button
+								label="Search"
+								onclick={performSearch}>
+						</lightning-button>
+				</div>-->
+			  <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <template if:true={error}>
+            <p class="error">
+                {error.message}
+            </p>
+        </template>
+        <template if:false={isLoading}>
+            <template if:true={searchResults.length}>
+                <p class="account-counter">
+                    {accountCountMessage}
+                </p>
+                <div class="search-results-container">
+                    <template for:each={visibleResults} for:item="result">
+                        <c-s-t-p-search-result-tile key={result.account.Id} account={result.account} service-areas={result.serviceAreas} categories={result.categories} file-url={result.fileURL}>
+                        </c-s-t-p-search-result-tile>
+                    </template>
+                </div>
+                <template if:true={showLoadMoreButton}>
+                    <lightning-button label="Load More" onclick={loadMore}></lightning-button>
+                </template>
+            </template>
+            <template if:false={searchResults.length}>
+                <p class="nothing-found">
+                    Nothing found
+                </p>
+            </template>
+        </template>
+    </div>
+</template>

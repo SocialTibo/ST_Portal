@@ -1,0 +1,12 @@
+.search-results-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; 
+}
+.account-counter{
+		margin: 1rem;
+}
+.results-card{
+				border: none;
+
+}

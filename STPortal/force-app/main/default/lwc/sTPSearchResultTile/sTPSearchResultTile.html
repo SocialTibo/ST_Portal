@@ -1,0 +1,51 @@
+<template>
+    <div class="search-result-tile" style={tileStyle}>
+        <div class="content-section">
+            <div class="logo-account-line">
+                <div class="logo-block">
+                      <template if:true={fileURL}>
+                        <img class="logo" src={fileURL} alt="Account Logo"/>
+                    </template>
+                      <template if:false={fileURL}>
+                        <img class="logo"  alt="Default Logo"/>
+                    </template>
+                </div>
+                <div class="account-info">
+                    <h2 class="account-name">
+                        <a href={accountUrl} target="_blank" class="supplier-name">{account.Name}</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="inline-content">
+                <p class="account-description">
+                    <span class={descriptionClass}>{shortDescription}</span>
+                    <span class="read-more" onclick={toggleReadMore}>{readMoreText}</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="inline-content">
+                <p class="section-title">Service Locations:</p>
+                <p>{formattedServiceAreas}</p>
+            </div>
+            <div class="inline-content">
+                <p class="section-title">Products & Services:</p>
+                <p>{formattedCategories}</p>
+            </div>
+            <div class="inline-content">
+                <p class="section-title">Beneficiaries:</p>
+                <p>{formattedBeneficiaries}</p>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="view-website">
+                <a href={accountWebsite} target="_blank" class="slds-button slds-button_brand">View Website</a>
+            </div>
+        </div>
+    </div>
+</template>
