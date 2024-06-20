@@ -1,9 +1,11 @@
-import { LightningElement, track, api } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import validateSpendAllRecords from '@salesforce/apex/SpendService.validateSpendAllRecords';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
 import { loadStyle } from 'lightning/platformResourceLoader';
 import fileSelectorStyle from '@salesforce/resourceUrl/fileSelectorStyle';
+
 
 export default class UploadSpendAllCSV extends NavigationMixin(LightningElement) {
     @track fileData;
@@ -11,7 +13,6 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     @track errorMessages = [];
     @track isLoading = false;
     @track validatedRecords = [];
-  @api recordId;
 
     expectedHeaders = ['Buyer', 'ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
 
@@ -19,6 +20,15 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         return this.errorMessages.length > 0;
     }
 
+		
+		// style uploader
+		
+	connectedCallback() {
+        Promise.all([
+            loadStyle(this, fileSelectorStyle)
+        ]);
+    }
+		
     handleFileUpload(event) {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
@@ -137,27 +147,4 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             }
         });
     }
-		
-		
-		// load style & Upload component
-    get acceptedFormats() {
-        return ['.csv'];
-    }
-
-    connectedCallback() {
-        Promise.all([
-            loadStyle(this, fileSelectorStyle)
-        ]);
-    }
-
-    handleUploadFinished(event) {
-        const uploadedFiles = event.detail.files.length;
-        const evt = new ShowToastEvent({
-            title: 'SUCCESS',
-            message: uploadedFiles + ' File(s) uploaded  successfully',
-            variant: 'success',
-        });
-        this.dispatchEvent(evt);
-    }
-
 }

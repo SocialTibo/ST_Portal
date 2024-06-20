@@ -6,10 +6,9 @@
     align-items: center;
     justify-content: center;
 }
-.slds-file-selector__body{
+.import-container{
+		display: flex;
 		flex-direction: vertical;
-}
-
-.slds-file-selector__dropzone {
-padding: 15rem;
+		    align-items: center;
+    gap: 1rem;
 }
