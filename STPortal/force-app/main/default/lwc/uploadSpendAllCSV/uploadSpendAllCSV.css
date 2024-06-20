@@ -1,0 +1,15 @@
+.dummyClass{color:black;}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.slds-file-selector__body{
+		flex-direction: vertical;
+}
+
+.slds-file-selector__dropzone {
+padding: 15rem;
+}

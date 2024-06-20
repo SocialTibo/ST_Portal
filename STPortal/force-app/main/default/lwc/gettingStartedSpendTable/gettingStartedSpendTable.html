@@ -1,0 +1,43 @@
+<template>
+    <lightning-card >
+        <div class="table-container">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr>
+                        <th class="slds-text-title_caps">
+                            Supplier ABN
+                            <lightning-helptext content="The Supplier ABN"></lightning-helptext>
+                        </th>
+                        <th class="slds-text-title_caps">
+                            Amount
+                            <lightning-helptext content="amount"></lightning-helptext>
+                        </th>
+                        <th class="slds-text-title_caps">
+                            Financial Year
+                            <lightning-helptext content="Year of the Spend record"></lightning-helptext>
+                        </th>
+												 <th class="slds-text-title_caps">
+                            Quarter
+                            <lightning-helptext content="Quarter of the year"></lightning-helptext>
+                        </th>
+												<th class="slds-text-title_caps">
+                           Category
+                            <lightning-helptext content="The Service Category of the spend"></lightning-helptext>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={data} for:item="row">
+                        <tr key={row.id}>
+                            <td>{row.column1}</td>
+                            <td>{row.column2}</td>
+                            <td>{row.column3}</td>
+														<td>{row.column4}</td>
+														<td>{row.column5}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

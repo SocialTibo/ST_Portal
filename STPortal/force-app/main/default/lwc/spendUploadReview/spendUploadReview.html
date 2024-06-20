@@ -1,0 +1,16 @@
+<template>
+    <c-spend-upload-step-navigation page-name="Review"></c-spend-upload-step-navigation>
+    <template if:true={showAbnErrors}>
+        <c-spend-upload-unmatched-a-b-n onshowcategoryerrors={handleShowCategoryErrors}></c-spend-upload-unmatched-a-b-n>
+    </template>
+    <template if:true={showCategoryErrors}>
+        <c-spend-upload-unmatched-category></c-spend-upload-unmatched-category>
+    </template>
+    <template if:false={showAbnErrors}>
+        <template if:false={showCategoryErrors}>
+            <lightning-card title="Validated Records" icon-name="custom:custom63">
+                <!-- Render validated records here -->
+            </lightning-card>
+        </template>
+    </template>
+</template>

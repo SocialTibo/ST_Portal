@@ -1,0 +1,30 @@
+<template>
+    <lightning-progress-indicator current-step={currentStep}>
+        <lightning-progress-step
+            label="Step One"
+            value="step1"
+            onstepblur={handleStepBlur}
+            onstepfocus={handleStepFocus}
+            onstepmouseenter={handleMouseEnter}
+            onstepmouseleave={handleMouseLeave}>
+        </lightning-progress-step>
+        <lightning-progress-step
+            label="Step Two"
+            value="step2"
+            onstepblur={handleStepBlur}
+            onstepfocus={handleStepFocus}
+            onstepmouseenter={handleMouseEnter}
+            onstepmouseleave={handleMouseLeave}>
+        </lightning-progress-step>
+        <lightning-progress-step
+            label="Step Three"
+            value="step3"
+            onstepblur={handleStepBlur}
+            onstepfocus={handleStepFocus}
+            onstepmouseenter={handleMouseEnter}
+            onstepmouseleave={handleMouseLeave}>
+        </lightning-progress-step>
+    </lightning-progress-indicator>
+
+   
+</template>
