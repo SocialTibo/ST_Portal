@@ -1,5 +1,4 @@
 <template>
-    <lightning-card title="Unmatched Categories" icon-name="utility:error">
         <template if:true={errorMessages.length}>
             <div class="slds-m-around_medium">
                 <template for:each={errorMessages} for:item="error">
@@ -23,5 +22,4 @@
                 <p>No errors found.</p>
             </div>
         </template>
-    </lightning-card>
 </template>
