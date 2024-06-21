@@ -1,29 +1,27 @@
 <template>
-	<p>
-			{errorMessages.length} suppliers not found on Social Traders.
-	</p>
-	<template if:true={errorMessages.length}>
-			<div class="slds-m-around_medium">
-					<template for:each={errorMessages} for:item="error">
-							<div key={error.ABN} class="slds-box slds-m-bottom_small">
-								<div class="record-container">
-								<div class="label-item">
-										<p><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
-										<p>Spend of ${error.Amount} on DATE</p>
-									</div>
-									<div class="button-item">
-										<lightning-button label="Find Supplier" class="slds-m-top_medium"></lightning-button>
-										<lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
-									</div>
-									</div>
-							</div>
-					</template>	
-			</div>
-	</template>
-	<template if:false={errorMessages.length}>
-			<div class="slds-m-around_medium">
-					<p>No errors found.</p>
-			</div>
-	</template>
-	<lightning-button label="Next" class="slds-m-top_medium" onclick={handleNext}></lightning-button>
+    <p>{errorMessages.length} suppliers not found on Social Traders.</p>
+    <template if:true={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <template for:each={errorMessages} for:item="error">
+                <div key={error.ABN} class="slds-box slds-m-bottom_small">
+                    <div class="record-container">
+                        <div class="label-item">
+                            <p><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
+                            <p>Spend of ${error.Amount} on DATE</p>
+                        </div>
+                        <div class="button-item">
+                            <lightning-button label="Find Supplier" class="slds-m-top_medium"></lightning-button>
+                            <lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <p>No errors found.</p>
+        </div>
+    </template>
+    <lightning-button label="Next" class="slds-m-top_medium" onclick={handleNext}></lightning-button>
 </template>

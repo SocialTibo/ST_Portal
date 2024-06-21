@@ -25,12 +25,23 @@ export default class SpendUploadReview extends LightningElement {
         }
     }
 
-    get hasAbnErrors() {
-        return this.abnErrors.length > 0;
+    get currentStep() {
+        if (this.showAbnErrors) {
+            return 'step2'; // Review ABN
+        } else if (this.showCategoryErrors) {
+            return 'step3'; // Review Category
+        } else {
+            return 'step4'; // Submit
+        }
     }
 
     handleShowCategoryErrors() {
         this.showCategoryErrors = true;
         this.showAbnErrors = false;
+    }
+
+    handleSubmit() {
+        // Logic for handling the submission of validated records
+        // e.g., call an Apex method to insert the records
     }
 }
