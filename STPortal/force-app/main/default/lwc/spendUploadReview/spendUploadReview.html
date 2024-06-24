@@ -7,6 +7,9 @@
         amount-errors={amountErrors}>
     </c-spend-upload-step-navigation>
     
+    <template if:true={step0Visible}>
+        <c-upload-spend-all-c-s-v></c-upload-spend-all-c-s-v>
+    </template>
     <template if:true={step1Visible}>
         <c-spend-upload-unmatched-a-b-n></c-spend-upload-unmatched-a-b-n>
     </template>
@@ -23,4 +26,3 @@
         </lightning-card>
     </template>
 </template>
-

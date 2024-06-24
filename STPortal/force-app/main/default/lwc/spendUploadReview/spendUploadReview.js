@@ -6,9 +6,6 @@ export default class SpendUploadReview extends LightningElement {
     @track abnErrors = [];
     @track categoryErrors = [];
     @track amountErrors = [];
-    @track showAbnErrors = false;
-    @track showCategoryErrors = false;
-    @track showAmountErrors = false;
     @track currentStep = 'step1';
 
     @wire(CurrentPageReference)
@@ -50,12 +47,7 @@ export default class SpendUploadReview extends LightningElement {
         return this.currentStep === 'step4';
     }
 
-    
-
     handleStepChange(event) {
         this.currentStep = event.detail;
-        this.showAbnErrors = this.currentStep === 'step1';
-        this.showCategoryErrors = this.currentStep === 'step2';
-        this.showAmountErrors = this.currentStep === 'step3';
     }
 }
