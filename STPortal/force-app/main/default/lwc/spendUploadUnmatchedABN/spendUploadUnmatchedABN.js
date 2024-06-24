@@ -13,10 +13,5 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
         }
     }
 
-    handleNext() {
-        const event = new CustomEvent('showcategoryerrors', {
-            detail: true
-        });
-        this.dispatchEvent(event);
-    }
+    
 }

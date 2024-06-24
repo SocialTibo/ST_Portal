@@ -139,8 +139,15 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 validatedRecords: JSON.stringify(this.validatedRecords),
                 abnErrors: JSON.stringify(abnErrors),
                 categoryErrors: JSON.stringify(categoryErrors),
-                amountErrors: JSON.stringify(amountErrors)
+                amountErrors: JSON.stringify(amountErrors),
+                step: 'step1' 
             }
         });
+
+        // Dispatch a custom event to move to step 1
+        const event = new CustomEvent('stepchange', {
+            detail: 'step1'
+        });
+        this.dispatchEvent(event);
     }
 }

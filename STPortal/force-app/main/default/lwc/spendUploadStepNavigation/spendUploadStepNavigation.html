@@ -1,10 +1,13 @@
 <template>
-    <p>{currentStepLabel}</p>
+    <div class="nav-container">
+        <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        <p class="step-label">{currentStepLabel}</p>
+        <lightning-button label="Next" onclick={handleNext}></lightning-button>
+    </div>
     <lightning-progress-indicator current-step={currentStep}>
-        <lightning-progress-step label="Upload File" value="step1"></lightning-progress-step>
-        <lightning-progress-step label="Review ABN" value="step2"></lightning-progress-step>
-        <lightning-progress-step label="Review Category" value="step3"></lightning-progress-step>
-        <lightning-progress-step label="Invalid / Incomplete Details" value="step4"></lightning-progress-step>
-        <lightning-progress-step label="Submit" value="step5"></lightning-progress-step>
+        <lightning-progress-step label="Review ABN" value="step1"></lightning-progress-step>
+        <lightning-progress-step label="Review Category" value="step2"></lightning-progress-step>
+        <lightning-progress-step label="Invalid / Incomplete Details" value="step3"></lightning-progress-step>
+        <lightning-progress-step label="Submit" value="step4"></lightning-progress-step>
     </lightning-progress-indicator>
 </template>

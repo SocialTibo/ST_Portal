@@ -1,1 +1,17 @@
-.dummyClass{color:black;}
+.nav-bar {
+    display: flex;
+    justify-content: space-between; /* Space between buttons and label */
+    align-items: center; /* Center vertically */
+    height: 50px; 
+}
+
+.centered-label {
+    margin: 0; /* Removes default margin */
+    text-align: center; /* Ensures the text is centered */
+    font-size: 24px; /* Makes the text bigger */
+    font-weight: bold; /* Makes the text bold */
+}
+
+.nav-button {
+    margin: 0 10px; /* Adjust the margin as needed */
+}

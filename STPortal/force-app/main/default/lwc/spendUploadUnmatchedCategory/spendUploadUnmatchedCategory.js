@@ -13,10 +13,5 @@ export default class SpendUploadUnmatchedCategory extends LightningElement {
         }
     }
 
-    handleNext() {
-        const event = new CustomEvent('showamounterrors', {
-            detail: true
-        });
-        this.dispatchEvent(event);
-    }
+   
 }

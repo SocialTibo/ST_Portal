@@ -6,9 +6,10 @@ export default class SpendUploadReview extends LightningElement {
     @track abnErrors = [];
     @track categoryErrors = [];
     @track amountErrors = [];
+    @track showAbnErrors = false;
     @track showCategoryErrors = false;
-    @track showAbnErrors = true; // Initially show ABN errors
     @track showAmountErrors = false;
+    @track currentStep = 'step1';
 
     @wire(CurrentPageReference)
     pageRef;
@@ -27,34 +28,34 @@ export default class SpendUploadReview extends LightningElement {
             if (this.pageRef.state.amountErrors) {
                 this.amountErrors = JSON.parse(this.pageRef.state.amountErrors);
             }
+            if (this.pageRef.state.step) {
+                this.currentStep = this.pageRef.state.step;
+            }
         }
     }
 
-    get currentStep() {
-        if (this.showAbnErrors) {
-            return 'step2'; // Review ABN
-        } else if (this.showCategoryErrors) {
-            return 'step3'; // Review Category
-        } else if (this.showAmountErrors) {
-            return 'step4'; // Invalid / Incomplete Details
-        } else {
-            return 'step5'; // Submit
-        }
+    get step1Visible() {
+        return this.currentStep === 'step1';
     }
 
-    handleShowCategoryErrors() {
-        this.showCategoryErrors = true;
-        this.showAbnErrors = false;
+    get step2Visible() {
+        return this.currentStep === 'step2';
     }
 
-    handleShowAmountErrors() {
-        this.showAmountErrors = true;
-        this.showCategoryErrors = false;
-        this.showAbnErrors = false;
+    get step3Visible() {
+        return this.currentStep === 'step3';
     }
 
-    handleSubmit() {
-        // Logic for handling the submission of validated records
-        // e.g., call an Apex method to insert the records
+    get step4Visible() {
+        return this.currentStep === 'step4';
+    }
+
+    
+
+    handleStepChange(event) {
+        this.currentStep = event.detail;
+        this.showAbnErrors = this.currentStep === 'step1';
+        this.showCategoryErrors = this.currentStep === 'step2';
+        this.showAmountErrors = this.currentStep === 'step3';
     }
 }
