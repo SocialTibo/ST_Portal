@@ -130,6 +130,9 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     }
 
     navigateToReviewPage(abnErrors, categoryErrors, amountErrors) {
+        const noErrors = abnErrors.length === 0 && categoryErrors.length === 0 && amountErrors.length === 0;
+        const nextStep = noErrors ? 'step4' : 'step1';
+
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -140,13 +143,13 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 abnErrors: JSON.stringify(abnErrors),
                 categoryErrors: JSON.stringify(categoryErrors),
                 amountErrors: JSON.stringify(amountErrors),
-                step: 'step1' 
+                step: nextStep 
             }
         });
 
-        // Dispatch a custom event to move to step 1
+        // Dispatch a custom event to move to the next step
         const event = new CustomEvent('stepchange', {
-            detail: 'step1'
+            detail: nextStep
         });
         this.dispatchEvent(event);
     }
