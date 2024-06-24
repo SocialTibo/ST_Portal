@@ -2,14 +2,14 @@
     <template if:true={errorMessages.length}>
         <div class="slds-m-around_medium">
             <template for:each={errorMessages} for:item="error">
-                <div key={error.Category} class="slds-box slds-m-bottom_small">
+                <div key={error.Amount} class="slds-box slds-m-bottom_small">
                     <div class="record-container">
                         <div class="label-item">
-                            <p><strong>Category:</strong> {error.Category} - <strong>{error.Description}</strong></p>
-                            <p>Spend of ${error.Amount} on DATE</p>
+                            <p><strong>Amount:</strong> {error.Amount} - <strong>{error.Description}</strong></p>
+                            <p>Other details here...</p>
                         </div>
                         <div class="button-item">
-                            <lightning-button label="Find Category" class="slds-m-top_medium"></lightning-button>
+                            <lightning-button label="Resolve Issue" class="slds-m-top_medium"></lightning-button>
                             <lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
                         </div>
                     </div>

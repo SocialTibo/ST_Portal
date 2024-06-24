@@ -12,6 +12,8 @@ export default class SpendUploadStepNavigation extends LightningElement {
             case 'step3':
                 return 'Review Category';
             case 'step4':
+                return 'Invalid / Incomplete Details';
+            case 'step5':
                 return 'Submit';
             default:
                 return 'Upload File';

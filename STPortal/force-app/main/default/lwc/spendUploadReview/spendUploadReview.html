@@ -3,15 +3,20 @@
     <template if:true={showAbnErrors}>
         <c-spend-upload-unmatched-a-b-n onshowcategoryerrors={handleShowCategoryErrors}></c-spend-upload-unmatched-a-b-n>
     </template>
-    <template if:true={showCategoryErrors}>
-        <c-spend-upload-unmatched-category></c-spend-upload-unmatched-category>
-    </template>
     <template if:false={showAbnErrors}>
+        <template if:true={showCategoryErrors}>
+            <c-spend-upload-unmatched-category onshowamounterrors={handleShowAmountErrors}></c-spend-upload-unmatched-category>
+        </template>
         <template if:false={showCategoryErrors}>
-            <lightning-card title="Validated Records" icon-name="custom:custom63">
-                <!-- Render validated records here -->
-                <lightning-button label="Submit" class="slds-m-top_medium" onclick={handleSubmit}></lightning-button>
-            </lightning-card>
+            <template if:true={showAmountErrors}>
+                <c-spend-upload-unmatched-details></c-spend-upload-unmatched-details>
+            </template>
+            <template if:false={showAmountErrors}>
+                <lightning-card title="Validated Records" icon-name="custom:custom63">
+                    <!-- Render validated records here -->
+                    <lightning-button label="Submit" class="slds-m-top_medium" onclick={handleSubmit}></lightning-button>
+                </lightning-card>
+            </template>
         </template>
     </template>
 </template>

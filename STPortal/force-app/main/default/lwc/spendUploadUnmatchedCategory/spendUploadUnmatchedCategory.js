@@ -12,4 +12,11 @@ export default class SpendUploadUnmatchedCategory extends LightningElement {
             this.errorMessages = JSON.parse(this.pageRef.state.categoryErrors);
         }
     }
+
+    handleNext() {
+        const event = new CustomEvent('showamounterrors', {
+            detail: true
+        });
+        this.dispatchEvent(event);
+    }
 }

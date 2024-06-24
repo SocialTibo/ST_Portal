@@ -5,8 +5,10 @@ export default class SpendUploadReview extends LightningElement {
     @track validatedRecords = [];
     @track abnErrors = [];
     @track categoryErrors = [];
+    @track amountErrors = [];
     @track showCategoryErrors = false;
     @track showAbnErrors = true; // Initially show ABN errors
+    @track showAmountErrors = false;
 
     @wire(CurrentPageReference)
     pageRef;
@@ -22,6 +24,9 @@ export default class SpendUploadReview extends LightningElement {
             if (this.pageRef.state.categoryErrors) {
                 this.categoryErrors = JSON.parse(this.pageRef.state.categoryErrors);
             }
+            if (this.pageRef.state.amountErrors) {
+                this.amountErrors = JSON.parse(this.pageRef.state.amountErrors);
+            }
         }
     }
 
@@ -30,13 +35,21 @@ export default class SpendUploadReview extends LightningElement {
             return 'step2'; // Review ABN
         } else if (this.showCategoryErrors) {
             return 'step3'; // Review Category
+        } else if (this.showAmountErrors) {
+            return 'step4'; // Invalid / Incomplete Details
         } else {
-            return 'step4'; // Submit
+            return 'step5'; // Submit
         }
     }
 
     handleShowCategoryErrors() {
         this.showCategoryErrors = true;
+        this.showAbnErrors = false;
+    }
+
+    handleShowAmountErrors() {
+        this.showAmountErrors = true;
+        this.showCategoryErrors = false;
         this.showAbnErrors = false;
     }
 

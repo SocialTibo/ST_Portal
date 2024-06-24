@@ -79,7 +79,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             const validationResult = await validateSpendAllRecords({ spendAllRecords });
 
             this.validatedRecords = validationResult.validRecords;
-            this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors);
+            this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors, validationResult.amountErrors);
 
         } catch (error) {
             this.showError([{ text: 'Error processing CSV data: ' + error.message, class: 'error' }]);
@@ -129,7 +129,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         this.dispatchEvent(event);
     }
 
-    navigateToReviewPage(abnErrors, categoryErrors) {
+    navigateToReviewPage(abnErrors, categoryErrors, amountErrors) {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -138,7 +138,8 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             state: {
                 validatedRecords: JSON.stringify(this.validatedRecords),
                 abnErrors: JSON.stringify(abnErrors),
-                categoryErrors: JSON.stringify(categoryErrors)
+                categoryErrors: JSON.stringify(categoryErrors),
+                amountErrors: JSON.stringify(amountErrors)
             }
         });
     }
