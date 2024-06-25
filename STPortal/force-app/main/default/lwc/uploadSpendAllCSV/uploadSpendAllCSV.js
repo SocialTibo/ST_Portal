@@ -34,6 +34,8 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 const csv = reader.result;
                 this.fileData = csv;
                 this.errorMessages = [];
+                // Automatically trigger the import records function
+                this.importRecords();
             };
 
             reader.onerror = () => {
