@@ -87,7 +87,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
 
             this.validatedRecords = validationResult.validRecords;
 
-            // Simulate delay to show progress bar for at least 4 seconds
+            // Simulate delay to show progress bar for at least 2 seconds
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors, validationResult.amountErrors);
@@ -172,8 +172,8 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
 
     incrementProgress() {
         if (this.progressValue < 100) {
-            this.progressValue += 10;
-            setTimeout(() => this.incrementProgress(), 400);
+            this.progressValue += 20;
+            setTimeout(() => this.incrementProgress(), 170);
         }
     }
 
