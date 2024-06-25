@@ -1,6 +1,12 @@
 <template>
     <c-spend-upload-step-navigation current-step="step0"></c-spend-upload-step-navigation>
-    <div class="content-container">
+    <!-- Progress Bar -->
+        <template if:true={isLoading}>
+            <div class="progress-bar-container">
+                <lightning-progress-bar value={progressValue}></lightning-progress-bar>
+            </div>
+        </template>
+        <div class="content-container">
         <h1>Upload your CSV file</h1>
         <p>Drag and drop or search for your file below.</p>
         <p>Your file should be formatted to match requirements. To review these or learn more, click here.</p>
@@ -15,9 +21,11 @@
                 </div>
             </template>
             <template if:false={hasErrors}>
-                <lightning-input type="file" onchange={handleFileUpload}></lightning-input>
-               
+                <div class="file-upload-container">
+                    <lightning-input type="file" onchange={handleFileUpload}></lightning-input>
+                    
+                </div>
             </template>
         </div>
-    </div>
+    </div> 
 </template>

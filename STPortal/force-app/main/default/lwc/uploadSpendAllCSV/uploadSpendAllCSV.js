@@ -10,6 +10,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     @track fileName;
     @track errorMessages = [];
     @track isLoading = false;
+    @track progressValue = 0;
     @track validatedRecords = [];
 
     expectedHeaders = ['Buyer', 'ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
@@ -53,8 +54,12 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         }
 
         this.isLoading = true;
+        this.progressValue = 0;
 
         try {
+            // Simulate progress
+            this.incrementProgress();
+
             const rows = this.fileData.split('\n').filter(row => row.trim() !== '');
             const headers = rows[0].split(',').map(header => header.trim());
 
@@ -81,12 +86,16 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             const validationResult = await validateSpendAllRecords({ spendAllRecords });
 
             this.validatedRecords = validationResult.validRecords;
+
+            // Simulate delay to show progress bar for at least 4 seconds
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
             this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors, validationResult.amountErrors);
 
         } catch (error) {
-            this.showError([{ text: 'Error processing CSV data: ' + error.message, class: 'error' }]);
+            this.logError(error);
+            this.showError([{ text: 'Error processing CSV data', class: 'error' }]);
             console.error('Error processing CSV data:', error);
-        } finally {
             this.isLoading = false;
         }
     }
@@ -110,6 +119,8 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         this.fileData = null;
         this.fileName = null;
         this.validatedRecords = [];
+        this.isLoading = false;
+        this.progressValue = 0;
 
         const fileInput = this.template.querySelector('lightning-input[type="file"]');
         if (fileInput) {
@@ -134,6 +145,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     navigateToReviewPage(abnErrors, categoryErrors, amountErrors) {
         const nextStep = abnErrors.length > 0 ? 'step1' : (categoryErrors.length > 0 ? 'step2' : (amountErrors.length > 0 ? 'step3' : 'step4'));
 
+        // Navigate to the review page
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -148,10 +160,42 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             }
         });
 
+        // Stop loading indicator after navigation
+        this.isLoading = false;
+
         // Dispatch a custom event to move to the next step
         const event = new CustomEvent('stepchange', {
             detail: nextStep
         });
         this.dispatchEvent(event);
+    }
+
+    incrementProgress() {
+        if (this.progressValue < 100) {
+            this.progressValue += 10;
+            setTimeout(() => this.incrementProgress(), 400);
+        }
+    }
+
+    logError(error) {
+        let errorMessage = '';
+
+        if (error && typeof error === 'object') {
+            try {
+                errorMessage = JSON.stringify(error, null, 2);
+            } catch (e) {
+                errorMessage = error.toString();
+            }
+        } else {
+            errorMessage = error.toString();
+        }
+
+        const logEntry = {
+            message: error.message || errorMessage,
+            stack: error.stack || '',
+            extra: errorMessage
+        };
+
+        console.error('Error log:', logEntry);
     }
 }

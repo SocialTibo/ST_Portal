@@ -20,3 +20,7 @@ h1{
 font-size: 25px;
 font-weight: bold;
 }
+
+.progress-bar-container {
+    margin: 2rem;
+}
