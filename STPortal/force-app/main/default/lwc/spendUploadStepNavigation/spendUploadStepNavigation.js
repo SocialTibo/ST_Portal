@@ -31,7 +31,7 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
     handlePrevious() {
         const steps = this.getSteps();
         const currentIndex = steps.indexOf(this.currentStep);
-        if (this.currentStep === 'step1') {
+        if (this.currentStep === 'step1' || (this.currentStep === 'step4' && this.abnErrors.length === 0 && this.categoryErrors.length === 0 && this.amountErrors.length === 0)) {
             // Navigate back to the upload page
             this[NavigationMixin.Navigate]({
                 type: 'comm__namedPage',
