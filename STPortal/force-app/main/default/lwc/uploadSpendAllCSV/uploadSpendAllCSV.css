@@ -12,3 +12,11 @@
 		    align-items: center;
     gap: 1rem;
 }
+
+.content-container{
+    margin: 4rem 0;
+}
+h1{
+    font-size: 25px;
+    font-weight: bold;
+}
