@@ -130,8 +130,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     }
 
     navigateToReviewPage(abnErrors, categoryErrors, amountErrors) {
-        const noErrors = abnErrors.length === 0 && categoryErrors.length === 0 && amountErrors.length === 0;
-        const nextStep = noErrors ? 'step4' : 'step1';
+        const nextStep = abnErrors.length > 0 ? 'step1' : (categoryErrors.length > 0 ? 'step2' : (amountErrors.length > 0 ? 'step3' : 'step4'));
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',

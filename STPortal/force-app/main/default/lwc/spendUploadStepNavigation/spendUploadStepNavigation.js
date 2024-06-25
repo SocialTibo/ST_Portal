@@ -24,8 +24,25 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
         }
     }
 
-    get isUploadSpendStep() {
-        return this.currentStep === 'step0';
+
+    get showPreviousButton() {
+        return this.currentStep !== 'step0';
+    }
+
+    get showNextButton() {
+        return this.currentStep !== 'step0';
+    }
+
+    get showReviewABNStep() {
+        return this.abnErrors.length > 0;
+    }
+
+    get showReviewCategoryStep() {
+        return this.categoryErrors.length > 0;
+    }
+
+    get showInvalidDetailsStep() {
+        return this.amountErrors.length > 0;
     }
 
     handlePrevious() {

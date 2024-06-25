@@ -6,7 +6,7 @@ export default class SpendUploadReview extends LightningElement {
     @track abnErrors = [];
     @track categoryErrors = [];
     @track amountErrors = [];
-    @track currentStep = 'step1';
+    @track currentStep = 'step0';
 
     @wire(CurrentPageReference)
     pageRef;
@@ -29,6 +29,10 @@ export default class SpendUploadReview extends LightningElement {
                 this.currentStep = this.pageRef.state.step;
             }
         }
+    }
+
+    get step0Visible() {
+        return this.currentStep === 'step0';
     }
 
     get step1Visible() {
