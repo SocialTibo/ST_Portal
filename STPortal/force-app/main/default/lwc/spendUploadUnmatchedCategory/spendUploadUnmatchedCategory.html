@@ -1,4 +1,5 @@
 <template>
+    <p>{errorMessages.length} Categories not found on Social Traders.</p>
     <template if:true={errorMessages.length}>
         <div class="slds-m-around_medium">
             <template for:each={errorMessages} for:item="error">

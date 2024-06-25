@@ -1,6 +1,6 @@
 <template>
     <p>Please resolve Invalid details</p>
-    <p>The system has flagged some missing or invalid data in some of your records.</p>
+    <p>The system has flagged {errorMessages.length} missing or invalid data in some of your records.</p>
     <p>Please use the tool below to fix the error or add the missing data prior to continuing.</p>
     <template if:true={errorMessages.length}>
         <div class="slds-m-around_medium">

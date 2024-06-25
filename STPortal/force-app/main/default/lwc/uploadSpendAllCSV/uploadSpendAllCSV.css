@@ -1,22 +1,22 @@
 .dummyClass{color:black;}
 
 .center-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* display: flex;*/
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 .import-container{
-		display: flex;
-		flex-direction: vertical;
-		    align-items: center;
-    gap: 1rem;
+display: flex;
+flex-direction: vertical;
+align-items: center;
+gap: 1rem;
 }
 
 .content-container{
-    margin: 4rem 0;
+margin: 4rem 0;
 }
 h1{
-    font-size: 25px;
-    font-weight: bold;
+font-size: 25px;
+font-weight: bold;
 }
