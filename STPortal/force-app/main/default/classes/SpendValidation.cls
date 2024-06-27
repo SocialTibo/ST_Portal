@@ -15,18 +15,23 @@ public class SpendValidation {
         Set<Map<String, String>> abnErrors = new Set<Map<String, String>>();
         Set<Map<String, String>> categoryErrors = new Set<Map<String, String>>();
         Set<Map<String, String>> amountErrors = new Set<Map<String, String>>();
+        Set<Map<String, String>> supplierErrors = new Set<Map<String, String>>();
 
-        // Sets to collect unique ABNs and categories from the input records
+        // Sets to collect unique ABNs, categories, and suppliers from the input records
         Set<String> abnSet = new Set<String>();
         Set<String> categorySet = new Set<String>();
+        Set<String> supplierSet = new Set<String>();
 
-        // Collect ABNs and categories from the input records
+        // Collect ABNs, categories, and suppliers from the input records
         for (Map<String, String> recordMap : spendAllRecords) {
             if (recordMap.containsKey('ABN')) {
                 abnSet.add(recordMap.get('ABN'));
             }
             if (recordMap.containsKey('Category')) {
                 categorySet.add(recordMap.get('Category'));
+            }
+            if (recordMap.containsKey('Supplier')) {
+                supplierSet.add(recordMap.get('Supplier'));
             }
         }
 
@@ -39,6 +44,15 @@ public class SpendValidation {
             }
         }
 
+        // Map to store Supplier name to Account Id mappings
+        Map<String, Id> supplierToIdMap = new Map<String, Id>();
+        // Retrieve Account Ids for the collected Suppliers
+        if (!supplierSet.isEmpty()) {
+            for (Account acc : [SELECT Id, Name FROM Account WHERE Name IN :supplierSet AND RecordType.Name = 'Social Enterprise']) {
+                supplierToIdMap.put(acc.Name, acc.Id);
+            }
+        }
+
         // Map to store category name to Category__c Id mappings
         Map<String, Id> categoryNameToIdMap = new Map<String, Id>();
         // Retrieve Category__c Ids for the collected categories
@@ -48,28 +62,13 @@ public class SpendValidation {
             }
         }
 
-        // Retrieve buyer's account ID using contact ID
-        /*
-        String buyerAccountId;
-        if (contactId != null) {
-            try {
-                buyerAccountId = [SELECT AccountId FROM Contact WHERE Id = :contactId LIMIT 1].AccountId;
-            } catch (Exception e) {
-                throw new AuraHandledException('Error retrieving buyer account ID for contact: ' + contactId);
-            }
-        } else {
-            throw new AuraHandledException('No contact ID provided');
-        }*/
-        // Set Buyer field
-           // record.Buyer__c = buyerAccountId;
-
-
         // Validate each record and categorize them into valid records and specific errors
         for (Map<String, String> recordMap : spendAllRecords) {
             SpendAll__c record = new SpendAll__c();
             Boolean hasAbnError = false;
             Boolean hasCategoryError = false;
             Boolean hasAmountError = false;
+            Boolean hasSupplierError = false;
 
             // Validate Amount field
             if (recordMap.containsKey('Amount')) {
@@ -82,26 +81,26 @@ public class SpendValidation {
                 hasAmountError = true;
             }
 
-            
-
-            // Validate and set Supplier field using ABN
+            // Validate Supplier field
             if (recordMap.containsKey('Supplier')) {
                 String supplierName = recordMap.get('Supplier');
-                if (!abnToIdMap.containsKey(recordMap.get('ABN'))) {
-                    hasAbnError = true;
-                } else {
+                if (supplierToIdMap.containsKey(supplierName)) {
+                    record.Supplier__c = supplierToIdMap.get(supplierName);
+                } else if (recordMap.containsKey('ABN') && abnToIdMap.containsKey(recordMap.get('ABN'))) {
                     record.Supplier__c = abnToIdMap.get(recordMap.get('ABN'));
+                } else {
+                    hasSupplierError = true;
                 }
-            }
-
-            // Validate ABN field
-            if (recordMap.containsKey('ABN')) {
+            } else if (recordMap.containsKey('ABN')) {
                 String abn = recordMap.get('ABN');
                 if (!abnToIdMap.containsKey(abn)) {
                     hasAbnError = true;
                 } else {
+                    record.Supplier__c = abnToIdMap.get(abn);
                     record.ABN__c = abn; // Set ABN__c here
                 }
+            } else {
+                hasSupplierError = true;
             }
 
             // Validate and set Category field
@@ -120,11 +119,11 @@ public class SpendValidation {
             }
 
             // Add record to validRecords list if no errors found
-            if (!hasAbnError && !hasCategoryError && !hasAmountError) {
+            if (!hasAbnError && !hasCategoryError && !hasAmountError && !hasSupplierError) {
                 validRecords.add(record);
             }
             // Add record to specific error sets if errors found
-            if (hasAbnError) {
+            if (hasAbnError || hasSupplierError) {
                 abnErrors.add(recordMap);
             }
             if (hasCategoryError) {
