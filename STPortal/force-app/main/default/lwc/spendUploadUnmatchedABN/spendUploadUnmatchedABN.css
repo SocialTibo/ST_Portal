@@ -12,3 +12,14 @@
     gap: 1rem;  
     margin: 0 0 15px 0;
 }
+.supplier-error {
+    border-left: 4px solid #FF9800; /* Orange color for supplier errors */
+}
+
+.abn-error {
+    border-left: 4px solid #F44336; /* Red color for ABN errors */
+}
+
+.amount-error {
+    border-left: 4px solid #3F51B5; /* Blue color for amount errors */
+}

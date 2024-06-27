@@ -54,4 +54,9 @@ export default class SpendUploadReview extends LightningElement {
     handleStepChange(event) {
         this.currentStep = event.detail;
     }
+
+    handleValidatedRecordsChange(event) {
+        this.validatedRecords = event.detail;
+        console.log('Validated Records Updated:', JSON.stringify(this.validatedRecords));
+    }
 }

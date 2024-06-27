@@ -132,6 +132,13 @@ public class SpendValidation {
             if (hasAmountError) {
                 amountErrors.add(recordMap);
             }
+
+            // Log the validation results
+            System.debug('Validation Results: ' + recordMap);
+            System.debug('ABN Errors: ' + abnErrors);
+            System.debug('Category Errors: ' + categoryErrors);
+            System.debug('Amount Errors: ' + amountErrors);
+            System.debug('Supplier Errors: ' + supplierErrors);
         }
 
         // Store validation results in the result map
@@ -139,6 +146,7 @@ public class SpendValidation {
         result.put('abnErrors', new List<Map<String, String>>(abnErrors));
         result.put('categoryErrors', new List<Map<String, String>>(categoryErrors));
         result.put('amountErrors', new List<Map<String, String>>(amountErrors));
+        result.put('supplierErrors', new List<Map<String, String>>(supplierErrors));
 
         return result;
     }
