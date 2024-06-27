@@ -29,7 +29,7 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
     }
 
     get showNextButton() {
-        return this.currentStep !== 'step4';
+        return this.currentStep !== 'step0' && this.currentStep !== 'step4';
     }
 
     get showReviewABNStep() {
