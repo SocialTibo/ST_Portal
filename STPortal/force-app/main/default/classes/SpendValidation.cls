@@ -49,6 +49,7 @@ public class SpendValidation {
         }
 
         // Retrieve buyer's account ID using contact ID
+        /*
         String buyerAccountId;
         if (contactId != null) {
             try {
@@ -58,8 +59,11 @@ public class SpendValidation {
             }
         } else {
             throw new AuraHandledException('No contact ID provided');
-        }
+        }*/
+        // Set Buyer field
+           // record.Buyer__c = buyerAccountId;
 
+           
         // Validate each record and categorize them into valid records and specific errors
         for (Map<String, String> recordMap : spendAllRecords) {
             SpendAll__c record = new SpendAll__c();
@@ -78,8 +82,7 @@ public class SpendValidation {
                 hasAmountError = true;
             }
 
-            // Set Buyer field
-            record.Buyer__c = buyerAccountId;
+            
 
             // Validate and set Supplier field using ABN
             if (recordMap.containsKey('Supplier')) {

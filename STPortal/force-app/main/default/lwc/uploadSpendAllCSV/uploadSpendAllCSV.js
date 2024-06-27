@@ -16,7 +16,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     @track validatedRecords = [];
     @track contactId;
 
-    expectedHeaders = ['ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
+    expectedHeaders = ['Buyer', 'ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
 
     get hasErrors() {
         return this.errorMessages.length > 0;
