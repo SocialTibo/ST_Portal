@@ -24,13 +24,12 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
         }
     }
 
-
     get showPreviousButton() {
         return this.currentStep !== 'step0';
     }
 
     get showNextButton() {
-        return this.currentStep !== 'step0';
+        return this.currentStep !== 'step4';
     }
 
     get showReviewABNStep() {
@@ -48,17 +47,19 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
     handlePrevious() {
         const steps = this.getSteps();
         const currentIndex = steps.indexOf(this.currentStep);
-        if (this.currentStep === 'step1' || (this.currentStep === 'step4' && this.abnErrors.length === 0 && this.categoryErrors.length === 0 && this.amountErrors.length === 0)) {
-            // Navigate back to the upload page
-            this[NavigationMixin.Navigate]({
-                type: 'comm__namedPage',
-                attributes: {
-                    name: 'Upload_Spend__c'
-                }
-            });
-        } else if (currentIndex > 0) {
-            this.currentStep = steps[currentIndex - 1];
-            this.dispatchStepChangeEvent();
+
+        if (currentIndex > 0) {
+            // Check if there is a previous visible step
+            const previousStep = steps[currentIndex - 1];
+            if (previousStep === 'step0' || !this.isStepVisible(previousStep)) {
+                // Navigate back to the upload page
+                this.navigateToUploadPage();
+            } else {
+                this.currentStep = previousStep;
+                this.dispatchStepChangeEvent();
+            }
+        } else {
+            this.navigateToUploadPage();
         }
     }
 
@@ -77,6 +78,28 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
         if (this.categoryErrors.length === 0) steps.splice(steps.indexOf('step2'), 1);
         if (this.amountErrors.length === 0) steps.splice(steps.indexOf('step3'), 1);
         return steps;
+    }
+
+    isStepVisible(step) {
+        switch (step) {
+            case 'step1':
+                return this.abnErrors.length > 0;
+            case 'step2':
+                return this.categoryErrors.length > 0;
+            case 'step3':
+                return this.amountErrors.length > 0;
+            default:
+                return false;
+        }
+    }
+
+    navigateToUploadPage() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Upload_Spend__c'
+            }
+        });
     }
 
     dispatchStepChangeEvent() {
