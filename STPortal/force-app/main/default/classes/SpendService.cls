@@ -20,9 +20,16 @@ public class SpendService {
         return SpendCSVUtilities.getBlankTemplateCSV();
     }
     
+    /* WITH BUYER FIELD POPULATED:
     @AuraEnabled
     public static Map<String, Object> validateSpendAllRecords(List<Map<String, String>> spendAllRecords) {
         return SpendValidation.validateSpendAllRecords(spendAllRecords);
+    }*/
+
+    // Fetching USER INFOS Instead:
+    @AuraEnabled
+    public static Map<String, Object> validateSpendAllRecords(List<Map<String, String>> spendAllRecords, Id contactId) {
+        return SpendValidation.validateSpendAllRecords(spendAllRecords, contactId);
     }
 
     @AuraEnabled

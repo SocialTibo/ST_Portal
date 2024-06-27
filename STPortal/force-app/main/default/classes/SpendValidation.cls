@@ -1,12 +1,12 @@
 public class SpendValidation {
-    
     /**
      * Validates a list of SpendAll__c records and categorizes them into valid records, ABN errors, category errors, and amount errors.
      * 
      * @param spendAllRecords List of maps representing SpendAll__c records from the CSV file.
+     * @param contactId Id of the contact uploading the file.
      * @return A map containing lists of valid records, ABN errors, category errors, and amount errors.
      */
-    public static Map<String, Object> validateSpendAllRecords(List<Map<String, String>> spendAllRecords) {
+    public static Map<String, Object> validateSpendAllRecords(List<Map<String, String>> spendAllRecords, Id contactId) {
         // Result map to store validation results
         Map<String, Object> result = new Map<String, Object>();
         // List to store valid SpendAll__c records
@@ -48,6 +48,18 @@ public class SpendValidation {
             }
         }
 
+        // Retrieve buyer's account ID using contact ID
+        String buyerAccountId;
+        if (contactId != null) {
+            try {
+                buyerAccountId = [SELECT AccountId FROM Contact WHERE Id = :contactId LIMIT 1].AccountId;
+            } catch (Exception e) {
+                throw new AuraHandledException('Error retrieving buyer account ID for contact: ' + contactId);
+            }
+        } else {
+            throw new AuraHandledException('No contact ID provided');
+        }
+
         // Validate each record and categorize them into valid records and specific errors
         for (Map<String, String> recordMap : spendAllRecords) {
             SpendAll__c record = new SpendAll__c();
@@ -66,11 +78,8 @@ public class SpendValidation {
                 hasAmountError = true;
             }
 
-            // Set Buyer field if present
-            if (recordMap.containsKey('Buyer')) {
-                String buyerName = recordMap.get('Buyer');
-                // Add logic to set Buyer__c field if necessary
-            }
+            // Set Buyer field
+            record.Buyer__c = buyerAccountId;
 
             // Validate and set Supplier field using ABN
             if (recordMap.containsKey('Supplier')) {

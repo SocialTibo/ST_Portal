@@ -4,6 +4,8 @@ import validateSpendAllRecords from '@salesforce/apex/SpendService.validateSpend
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import fileSelectorStyle from '@salesforce/resourceUrl/fileSelectorStyle';
+import getContactId from '@salesforce/apex/UserService.getContactId'; 
+import userId from '@salesforce/user/Id';
 
 export default class UploadSpendAllCSV extends NavigationMixin(LightningElement) {
     @track fileData;
@@ -12,8 +14,9 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
     @track isLoading = false;
     @track progressValue = 0;
     @track validatedRecords = [];
+    @track contactId;
 
-    expectedHeaders = ['Buyer', 'ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
+    expectedHeaders = ['ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
 
     get hasErrors() {
         return this.errorMessages.length > 0;
@@ -23,6 +26,19 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         Promise.all([
             loadStyle(this, fileSelectorStyle)
         ]);
+        this.fetchContactId();
+    }
+
+    fetchContactId() {
+        getContactId({ userId: userId })
+            .then(result => {
+                this.contactId = result;
+                console.log('result of fetchContactId: ' + result);
+            })
+            .catch(error => {
+                this.showError([{ text: 'Error fetching contact ID', class: 'error' }]);
+                console.error('Error fetching contact ID:', error);
+            });
     }
 
     handleFileUpload(event) {
@@ -35,7 +51,6 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 const csv = reader.result;
                 this.fileData = csv;
                 this.errorMessages = [];
-                // Automatically trigger the import records function
                 this.importRecords();
             };
 
@@ -83,7 +98,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 return record;
             });
 
-            const validationResult = await validateSpendAllRecords({ spendAllRecords });
+            const validationResult = await validateSpendAllRecords({ spendAllRecords, contactId: this.contactId });
 
             this.validatedRecords = validationResult.validRecords;
 
