@@ -1,0 +1,5 @@
+{
+  "apiName" : "content",
+  "type" : "sfdc_cms__brandingSet",
+  "path" : "brandingSets"
+}

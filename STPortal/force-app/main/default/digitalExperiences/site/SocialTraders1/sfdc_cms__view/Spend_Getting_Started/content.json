@@ -1,0 +1,646 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Spend - Getting Started",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"900da02b-f65c-491b-85a3-2d296508f766\",\"columns\":[{\"UUID\":\"a9037898-1bdd-43d9-96d0-8292fad698aa\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Getting Started",
+                "textAlign" : "center",
+                "textColor" : "rgb(255, 255, 255)",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{\"textStyle\":\"heading-xlarge\",\"headingTag\":\"h1\"}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "86de85c0-5c4f-4763-8b58-9d073647d01c",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Learn How to start uploading your spend",
+                "textAlign" : "center",
+                "textColor" : "rgb(255, 255, 255)",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "dad6c5e8-ca56-43f4-bf12-5e91da00f259",
+              "type" : "component"
+            } ],
+            "id" : "a9037898-1bdd-43d9-96d0-8292fad698aa",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "900da02b-f65c-491b-85a3-2d296508f766",
+          "scopedBrandingSetId" : "block",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"677e9f42-b195-47c8-adf7-618572406690\",\"columns\":[{\"UUID\":\"63f58c1e-4829-4471-bbf9-a98e099740fc\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Are you ready to upload?",
+                "textAlign" : "center",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{\"textStyle\":\"heading-large\",\"headingTag\":\"h2\"}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "21ac738a-0af4-42bd-b55c-a7a2ff2e07f7",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "You will need a CSV file of your spend. To get started click the upload button",
+                "textAlign" : "center",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "79fadd79-fbbb-4a40-86be-d2abdb93f62d",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "size" : "standard",
+                "stretch" : "standard",
+                "text" : "Upload now",
+                "type" : "primary",
+                "url" : "{\"linkInfo\":{\"pageReference\":{\"type\":\"comm__namedPage\",\"attributes\":{\"name\":\"Upload_Spend__c\"}}}}"
+              },
+              "definition" : "dxp_base:button",
+              "id" : "57542456-ca71-4d99-b056-dca514842b79",
+              "type" : "component"
+            } ],
+            "id" : "63f58c1e-4829-4471-bbf9-a98e099740fc",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "677e9f42-b195-47c8-adf7-618572406690",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"e6d3c6d2-0d90-4e39-a114-2d3dd05a6c57\",\"columns\":[{\"UUID\":\"24b22cb8-4828-4bd2-9606-8db95842505b\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "How to prepare your file for upload",
+                "textAlign" : "center",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{\"textStyle\":\"heading-large\",\"headingTag\":\"h2\"}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "c125335f-ebbf-4c22-8c14-237b3a683f18",
+              "type" : "component"
+            } ],
+            "id" : "24b22cb8-4828-4bd2-9606-8db95842505b",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "e6d3c6d2-0d90-4e39-a114-2d3dd05a6c57",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "1440px",
+            "sectionColumnGutterWidth" : "0rem",
+            "sectionConfig" : "{\"UUID\":\"bfbc1137-a68a-4dea-a3e9-f6216c5a2b3a\",\"columns\":[{\"UUID\":\"f800c7c8-526f-433e-84ce-a8aadcc8fd23\",\"columnName\":\"Column 1\",\"columnKey\":\"84931\",\"columnWidth\":\"4\",\"seedComponents\":[]},{\"UUID\":\"ac8e3a04-58fd-4495-a0a0-f226ca1b2b6b\",\"columnName\":\"Column 2\",\"columnKey\":\"b1fdb\",\"columnWidth\":\"8\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "fit" : "contain",
+                "height" : 52,
+                "imageInfo" : "{\"imageInfoV1\":{\"url\":\"\",\"altText\":\"logo\",\"contentKey\":\"\",\"contentType\":null}}",
+                "overlayColor" : "",
+                "position" : "top left",
+                "width" : 100
+              },
+              "definition" : "dxp_base:image",
+              "id" : "1a8616a0-04a2-4eb4-b296-c9fad33a4d19",
+              "type" : "component"
+            } ],
+            "id" : "f800c7c8-526f-433e-84ce-a8aadcc8fd23",
+            "name" : "84931",
+            "title" : "Column 1",
+            "type" : "region"
+          }, {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "1. Export your finance data",
+                "textAlign" : "left",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "a74c0ee3-898b-4013-8fc9-7d922e77fede",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Access your company's finance system to export your full list of financial transactions for the reporting period. ",
+                "textAlign" : "left",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "845667ad-e563-49fb-ab1f-4b0befc3a71a",
+              "type" : "component"
+            } ],
+            "id" : "ac8e3a04-58fd-4495-a0a0-f226ca1b2b6b",
+            "name" : "b1fdb",
+            "title" : "Column 2",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "bfbc1137-a68a-4dea-a3e9-f6216c5a2b3a",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "1440px",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"107c99c6-9da9-4294-9e44-141dcced05c2\",\"columns\":[{\"UUID\":\"27648e17-3910-4fdc-91ff-8752160b4e00\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"4\",\"seedComponents\":[]},{\"UUID\":\"c3042425-231d-4689-8576-e91473ed91ad\",\"columnName\":\"Column 2\",\"columnKey\":\"84931\",\"columnWidth\":\"8\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "fit" : "contain",
+                "height" : 350,
+                "imageInfo" : "{\"imageInfoV1\":{\"url\":\"\",\"altText\":\"logo\",\"contentKey\":\"\",\"contentType\":null}}",
+                "overlayColor" : "",
+                "position" : "center center",
+                "width" : 100
+              },
+              "definition" : "dxp_base:image",
+              "id" : "f17b6dec-cd63-4e8e-9fd2-a0f56490c2c4",
+              "type" : "component"
+            } ],
+            "id" : "27648e17-3910-4fdc-91ff-8752160b4e00",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          }, {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "2. Filter your spend to Social Traders suppliers",
+                "textAlign" : "left",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "2136f01e-efbf-4fbb-8354-c9f59e6f7916",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Using Excel, filter out any suppliers not registered with Social Traders. To do this we recommend downloading the latest Social Traders list, adding it as an extra sheet in your finance data and then using the filtering function.",
+                "textAlign" : "left",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "32015b17-6af2-4fb6-baec-d27d96aca42a",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "dxpStyle" : { }
+              },
+              "definition" : "c:buttonDownloadSupplierList",
+              "id" : "c5fdb0ff-4df1-4d83-b0b3-e87f92822b43",
+              "type" : "component"
+            } ],
+            "id" : "c3042425-231d-4689-8576-e91473ed91ad",
+            "name" : "84931",
+            "title" : "Column 2",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "107c99c6-9da9-4294-9e44-141dcced05c2",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "1440px",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"98723714-2305-490c-8c47-2abc48b47502\",\"columns\":[{\"UUID\":\"fa6ddc1a-baff-4f4d-9742-6cc313c0b259\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"4\",\"seedComponents\":[]},{\"UUID\":\"e819d22e-46aa-4087-b4fd-7eab48e45d3a\",\"columnName\":\"Column 2\",\"columnKey\":\"84931\",\"columnWidth\":\"8\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "fit" : "contain",
+                "height" : 350,
+                "imageInfo" : "{\"imageInfoV1\":{\"url\":\"\",\"altText\":\"logo\",\"contentKey\":\"\",\"contentType\":null}}",
+                "overlayColor" : "",
+                "position" : "center center",
+                "width" : 100
+              },
+              "definition" : "dxp_base:image",
+              "id" : "e271eaf6-4ea1-48fa-98cd-f0aeb7213338",
+              "type" : "component"
+            } ],
+            "id" : "fa6ddc1a-baff-4f4d-9742-6cc313c0b259",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          }, {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "3. Ensure all data is valid",
+                "textAlign" : "left",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "dd2df976-6866-428e-815b-305756c64804",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "All fields and column headings must match the table below. Adjust your data to match labels and field formatting to ensure a smooth, first time upload. Hover over the ? on each column for more details.",
+                "textAlign" : "left",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "5b7254b6-c5c8-47fc-b18f-8f63b89b817e",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "dxpStyle" : { }
+              },
+              "definition" : "c:buttonDownloadBlankTemplate",
+              "id" : "c0f0f8f3-391c-4fdb-b13e-830cc433f557",
+              "type" : "component"
+            }, {
+              "attributes" : { },
+              "definition" : "c:gettingStartedSpendTable",
+              "id" : "5fb3c26f-9712-48b2-ba90-70ef29542a11",
+              "type" : "component"
+            } ],
+            "id" : "e819d22e-46aa-4087-b4fd-7eab48e45d3a",
+            "name" : "84931",
+            "title" : "Column 2",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "98723714-2305-490c-8c47-2abc48b47502",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "1440px",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"e2ac7f3b-40b9-48cb-9fff-f65bca2efb02\",\"columns\":[{\"UUID\":\"86101b27-3a73-4932-be01-6cc793bd1c27\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"4\",\"seedComponents\":[]},{\"UUID\":\"7d958f1d-9eaa-4831-acea-86c57ea64ca5\",\"columnName\":\"Column 2\",\"columnKey\":\"84931\",\"columnWidth\":\"8\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "fit" : "contain",
+                "height" : 350,
+                "imageInfo" : "{\"imageInfoV1\":{\"url\":\"\",\"altText\":\"logo\",\"contentKey\":\"\",\"contentType\":null}}",
+                "overlayColor" : "",
+                "position" : "center center",
+                "width" : 100
+              },
+              "definition" : "dxp_base:image",
+              "id" : "4f71090c-cb80-43c1-a6e8-9ceae72417a5",
+              "type" : "component"
+            } ],
+            "id" : "86101b27-3a73-4932-be01-6cc793bd1c27",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          }, {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "4. Upload and publish spend",
+                "textAlign" : "left",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "86c50150-5dc7-4598-99be-5f251a1f4bb2",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Save your spend as a CSV file and upload this file to SpendTracker. You will be given a final chance to review your data after it is uploaded. And when you are ready, you can publish it to Social Traders.",
+                "textAlign" : "left",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "3e2f45b1-f60e-4752-b94e-9cc32edc4a04",
+              "type" : "component"
+            } ],
+            "id" : "7d958f1d-9eaa-4831-acea-86c57ea64ca5",
+            "name" : "84931",
+            "title" : "Column 2",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "e2ac7f3b-40b9-48cb-9fff-f65bca2efb02",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : {
+              "margin" : {
+                "bottom" : "50px",
+                "left" : "50px",
+                "right" : "50px",
+                "top" : "50px"
+              }
+            },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"86819a79-ea01-4121-b6aa-f4cb07001d0b\",\"columns\":[{\"UUID\":\"4d38d9ad-de0c-4a28-9d99-b7ff77f866ac\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Are you ready to upload?",
+                "textAlign" : "center",
+                "textDecoration" : "{\"bold\":true}",
+                "textDisplayInfo" : "{\"textStyle\":\"heading-large\",\"headingTag\":\"h2\"}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "528c29da-6194-4049-aee8-ff108240fbea",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "backgroundColor" : "",
+                "dxpStyle" : { },
+                "isLinkable" : false,
+                "linkAssistiveText" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Click 'Upload now'. if you are ready to upload your file.",
+                "textAlign" : "center",
+                "textDecoration" : "{\"bold\":false}",
+                "textDisplayInfo" : "{\"textStyle\":\"heading-small\",\"headingTag\":\"h4\"}"
+              },
+              "definition" : "dxp_base:textBlock",
+              "id" : "ab0ec310-7deb-4235-8eaa-509c652ebc57",
+              "type" : "component"
+            }, {
+              "attributes" : {
+                "alignment" : "center",
+                "dxpStyle" : { },
+                "size" : "standard",
+                "stretch" : "standard",
+                "text" : "Upload now",
+                "type" : "primary",
+                "url" : "{\"linkInfo\":{\"pageReference\":{\"type\":\"comm__namedPage\",\"attributes\":{\"name\":\"Upload_Spend__c\"}}}}"
+              },
+              "definition" : "dxp_base:button",
+              "id" : "16391f7f-af53-4d8f-94ff-b5373e29a74d",
+              "type" : "component"
+            } ],
+            "id" : "4d38d9ad-de0c-4a28-9d99-b7ff77f866ac",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "86819a79-ea01-4121-b6aa-f4cb07001d0b",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"19d280d5-2e6d-44c7-9860-e477837f351c\",\"columns\":[{\"UUID\":\"4afc3397-02dd-4660-b8c2-645efe3ca272\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "id" : "4afc3397-02dd-4660-b8c2-645efe3ca272",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "19d280d5-2e6d-44c7-9860-e477837f351c",
+          "type" : "component"
+        }, {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"848fb6c4-095c-4d46-88d7-853898b7543c\",\"columns\":[{\"UUID\":\"db56df13-9106-45a8-bc3e-40bfc64d8f2a\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+          },
+          "children" : [ {
+            "id" : "db56df13-9106-45a8-bc3e-40bfc64d8f2a",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "848fb6c4-095c-4d46-88d7-853898b7543c",
+          "type" : "component"
+        } ],
+        "id" : "6afbc5e0-8eb5-47a8-9edf-9c41fd433b69",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "",
+            "dxpStyle" : { },
+            "pageTitle" : "Spend - Getting Started",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "4c7853d3-9b29-42d0-87b3-f179e03d38d1",
+          "type" : "component"
+        } ],
+        "id" : "0fb9233b-c390-4af6-8d31-3b82c603f0ba",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "7ec04aae-8ec2-4376-8a26-7b2d7a814cfe",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "custom-spend-getting-started"
+  }
+}

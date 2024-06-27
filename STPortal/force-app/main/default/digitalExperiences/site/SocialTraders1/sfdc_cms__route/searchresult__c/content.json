@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "SearchResult",
+  "contentBody" : {
+    "activeViewId" : "SearchResult",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-searchresult",
+    "urlPrefix" : "searchresult"
+  }
+}

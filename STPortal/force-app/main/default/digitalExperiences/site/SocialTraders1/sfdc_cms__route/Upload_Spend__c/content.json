@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Upload Spend",
+  "contentBody" : {
+    "activeViewId" : "Upload_Spend",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-upload-spend",
+    "urlPrefix" : "upload-spend"
+  }
+}
