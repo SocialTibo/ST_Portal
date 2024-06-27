@@ -20,9 +20,6 @@
         <c-spend-upload-unmatched-details></c-spend-upload-unmatched-details>
     </template>
     <template if:true={step4Visible}>
-        <lightning-card title="Validated Records" icon-name="custom:custom63">
-            <!-- Render validated records here -->
-            <lightning-button label="Submit" class="slds-m-top_medium" onclick={handleSubmit}></lightning-button>
-        </lightning-card>
+        <c-spend-upload-validate-record validated-records={validatedRecords}></c-spend-upload-validate-record>
     </template>
 </template>

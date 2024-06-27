@@ -24,4 +24,9 @@ public class SpendService {
     public static Map<String, Object> validateSpendAllRecords(List<Map<String, String>> spendAllRecords) {
         return SpendValidation.validateSpendAllRecords(spendAllRecords);
     }
+
+    @AuraEnabled
+    public static void insertSpendAllRecords(List<SpendAll__c> validRecords) {
+        insert validRecords;
+    }
 }
