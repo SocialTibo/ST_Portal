@@ -7,17 +7,34 @@
                 <div key={error.ABN} class={error.errorClass}>
                     <div class="record-container">
                         <div class="label-item">
-                            <p class={error.labelClass}><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
+                            <p class={error.labelClass}><strong class="errorABN">ABN: {error.ABN}</strong> - <strong>{error.Supplier}</strong></p>
                             <p class={error.labelClass}>Spend of ${error.Amount} on DATE</p>
                         </div>
                         <div class="button-item">
-                            <lightning-button label="Find Supplier" class="slds-m-top_medium" data-id={error.ABN} onclick={handleFindSupplier}></lightning-button>
-                            <lightning-button label="Remove" class="slds-m-top_medium" data-id={error.ABN} onclick={handleRemove}></lightning-button>
+                            <template if:false={error.removed}>
+                                <template if:false={error.corrected}>
+                                    <lightning-button label="Find Supplier" class="slds-m-top_medium" data-id={error.ABN} onclick={handleFindSupplier}></lightning-button>
+                                    <lightning-button label="Remove" class="slds-m-top_medium" data-id={error.ABN} onclick={handleRemove}></lightning-button>
+                                </template>
+                            </template>
+                            <template if:true={error.corrected}>
+                                <span class="text-corrected">
+                                    <span> Matched to Supplier</span>
+                                    <lightning-icon icon-name="action:approval" alternative-text="Approved" size="xx-small"></lightning-icon>
+                                </span>
+                            </template>
+                            <template if:true={error.removed}>
+                                <span class="text-removed">
+                                    <span> Record removed</span>
+                                    <lightning-icon icon-name="action:close" alternative-text="Closed" size="xx-small"></lightning-icon>
+                                </span>
+                            </template>
                         </div>
                     </div>
                     <template if:true={error.showSearch}>
-                        <p>Use the search bar below</p>
-                        <lightning-input type="search" label="Search" placeholder="Search for suppliers..." data-id={error.ABN} onchange={handleSearch}></lightning-input>
+                        <p>The ABN provided did not match any Social enterprise suppliers on our system. Search below to see if it is listed under an alternative ABN.</p>
+                        <lightning-input type="search" placeholder="Search for suppliers..." data-id={error.ABN} onchange={handleSearch}></lightning-input>
+                        <p>This supplier may not be registered with Social Traders. <span onclick={handleSuggestion}><strong class="suggestion">Click here to suggest supplier</strong></span></p>
                         <template if:true={error.searchResults.length}>
                             <ul class="slds-listbox slds-listbox_vertical" role="listbox">
                                 <template for:each={error.searchResults} for:item="account">

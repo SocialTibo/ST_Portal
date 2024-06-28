@@ -16,13 +16,15 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
         if (this.pageRef && this.pageRef.state && this.pageRef.state.abnErrors) {
             this.errorMessages = JSON.parse(this.pageRef.state.abnErrors);
             // Initialize the showSearch and searchResults property for each error message
-            this.errorMessages = this.errorMessages.map(error => ({ 
+            this.errorMessages = this.errorMessages.map((error, index) => ({ 
                 ...error, 
                 showSearch: false, 
                 searchResults: [],
                 removed: false,
+                corrected: false,
                 errorClass: this.getErrorClass(error),
-                labelClass: this.getLabelClass(error)
+                labelClass: this.getLabelClass(error),
+                key: index
             }));
         }
     }
@@ -31,6 +33,8 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
         let errorClass = 'slds-box slds-m-bottom_small';
         if (error.removed) {
             errorClass += ' removed';
+        } else if (error.corrected) {
+            errorClass += ' corrected';
         } else {
             if (!error.Supplier) {
                 errorClass += ' supplier-error';
@@ -44,7 +48,7 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
     }
 
     getLabelClass(error) {
-        return error.removed ? 'removed' : '';
+        return error.removed ? 'strikethrough' : '';
     }
 
     handleFindSupplier(event) {
@@ -121,7 +125,7 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
                 this.validatedRecords = [...this.validatedRecords, updatedRecord];
 
                 const updatedError = { ...error, Supplier: accountName, SupplierId: accountId, ABN: accountABN, corrected: true, showSearch: false, searchResults: [] };
-                return { ...updatedError, errorClass: this.getErrorClass(updatedError), labelClass: this.getLabelClass(updatedError) };
+                return { ...updatedError, errorClass: this.getErrorClass(updatedError), labelClass: '' };
             }
             return error;
         });
