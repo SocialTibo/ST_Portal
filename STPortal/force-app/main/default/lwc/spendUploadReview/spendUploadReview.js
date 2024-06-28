@@ -29,6 +29,7 @@ export default class SpendUploadReview extends LightningElement {
                 this.currentStep = this.pageRef.state.step;
             }
         }
+        console.log('Connected callback - validatedRecords: ', JSON.stringify(this.validatedRecords));
     }
 
     get step0Visible() {
@@ -53,10 +54,12 @@ export default class SpendUploadReview extends LightningElement {
 
     handleStepChange(event) {
         this.currentStep = event.detail;
+        console.log('handleStepChange - currentStep: ', this.currentStep);
     }
 
     handleValidatedRecordsChange(event) {
-        this.validatedRecords = event.detail;
-        console.log('Validated Records Updated:', JSON.stringify(this.validatedRecords));
+        const newValidatedRecords = event.detail;
+        this.validatedRecords = [...this.validatedRecords, ...newValidatedRecords];
+        console.log('handleValidatedRecordsChange - validatedRecords: ', JSON.stringify(this.validatedRecords));
     }
 }

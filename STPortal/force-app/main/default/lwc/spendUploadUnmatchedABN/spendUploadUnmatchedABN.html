@@ -1,9 +1,10 @@
 <template>
-    <p>{errorMessages.length} suppliers not found on Social Traders.</p>
+    <p>{errorMessages.length} suppliers were not found on Social Traders or the ABN is matching multiple Accounts.</p>
+    <p>You can find the correct Supplier below</p>
     <template if:true={errorMessages.length}>
         <div class="slds-m-around_medium">
             <template for:each={errorMessages} for:item="error">
-                <div key={error.key} class="slds-box slds-m-bottom_small {error.errorClass}">
+                <div key={error.key} class="slds-box slds-m-bottom_small">
                     <div class="record-container">
                         <div class="label-item">
                             <p><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
@@ -22,7 +23,7 @@
                                 <template for:each={error.searchResults} for:item="account">
                                     <li key={account.Id} class="slds-listbox__item" data-id={account.Id} data-name={account.Name} data-abn={error.ABN} onclick={handleResultClick}>
                                         <a>
-                                            <span class="slds-truncate" title={account.Name}>{account.Name}</span>
+                                            <span class="slds-truncate" title={account.Name}>{account.Name} - {account.ABN__c}</span>
                                         </a>
                                     </li>
                                 </template>

@@ -101,6 +101,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             const validationResult = await validateSpendAllRecords({ spendAllRecords, contactId: this.contactId });
 
             this.validatedRecords = validationResult.validRecords;
+            console.log('Validated Records after validation: ', this.validatedRecords);
 
             // Simulate delay to show progress bar for at least 2 seconds
             await new Promise(resolve => setTimeout(resolve, 500));

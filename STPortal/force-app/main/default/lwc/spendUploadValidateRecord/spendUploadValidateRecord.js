@@ -11,11 +11,11 @@ export default class SpendUploadValidateRecord extends LightningElement {
         insertSpendAllRecords({ validRecords: this.validatedRecords })
             .then(() => {
                 this.showToast('Success', 'Records inserted successfully', 'success');
-                console.log('Records inserted successfully');
+                // Additional logic after successful insertion, e.g., navigate to another page
             })
             .catch(error => {
                 this.showToast('Error', error.body.message, 'error');
-                console.error('Error inserting records:', JSON.stringify(error));
+                console.error('Error inserting records: ', error);
             });
     }
 
