@@ -4,15 +4,15 @@
     <template if:true={errorMessages.length}>
         <div class="slds-m-around_medium">
             <template for:each={errorMessages} for:item="error">
-                <div key={error.key} class="slds-box slds-m-bottom_small">
+                <div key={error.ABN} class={error.errorClass}>
                     <div class="record-container">
                         <div class="label-item">
-                            <p><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
-                            <p>Spend of ${error.Amount} on DATE</p>
+                            <p class={error.labelClass}><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
+                            <p class={error.labelClass}>Spend of ${error.Amount} on DATE</p>
                         </div>
                         <div class="button-item">
                             <lightning-button label="Find Supplier" class="slds-m-top_medium" data-id={error.ABN} onclick={handleFindSupplier}></lightning-button>
-                            <lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
+                            <lightning-button label="Remove" class="slds-m-top_medium" data-id={error.ABN} onclick={handleRemove}></lightning-button>
                         </div>
                     </div>
                     <template if:true={error.showSearch}>
