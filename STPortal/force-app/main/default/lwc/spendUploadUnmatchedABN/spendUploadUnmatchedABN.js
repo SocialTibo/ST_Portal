@@ -1,5 +1,6 @@
 import { LightningElement, track, wire, api } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
+import SpendSuggestSupplierModal from 'c/spendSuggestSupplierModal';
 import searchAccounts from '@salesforce/apex/SpendValidation.searchSupplierAccounts';
 
 export default class SpendUploadUnmatchedABN extends LightningElement {
@@ -8,6 +9,7 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
     @track searchTerm = '';
     @track currentABN = '';
     @api validatedRecords = [];
+    @track showModal = false;
 
     @wire(CurrentPageReference)
     pageRef;
@@ -136,6 +138,15 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
         // Log the updated error message
         console.log('Updated Error Messages: ', this.errorMessages);
         console.log('Validated Records: ', this.validatedRecords);
+    }
+
+    async handleSuggestion() {
+        console.log('handleSuggestion called');
+        const result = await SpendSuggestSupplierModal.open({
+            size: 'medium',
+            content: 'Test'
+        });
+        console.log(result);
     }
 
     closeSearchResults() {

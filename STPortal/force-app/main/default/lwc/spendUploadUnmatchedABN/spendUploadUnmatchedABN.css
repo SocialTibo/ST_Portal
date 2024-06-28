@@ -42,4 +42,8 @@
 }
 .suggestion{
     color: rgb(100, 130, 183);
+    cursor: pointer;
+}
+.suggestion:hover {
+    color: darkblue;
 }

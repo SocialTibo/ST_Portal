@@ -7,6 +7,7 @@ export default class SpendUploadReview extends LightningElement {
     @track categoryErrors = [];
     @track amountErrors = [];
     @track currentStep = 'step0';
+    @track showModal = false;
 
     @wire(CurrentPageReference)
     pageRef;
@@ -61,5 +62,21 @@ export default class SpendUploadReview extends LightningElement {
         const newValidatedRecords = event.detail;
         this.validatedRecords = [...this.validatedRecords, ...newValidatedRecords];
         console.log('handleValidatedRecordsChange - validatedRecords: ', JSON.stringify(this.validatedRecords));
+    }
+
+    handleSuggestion() {
+        console.log('handleSuggestion called');
+        this.showModal = true;
+    }
+
+    handleModalClose() {
+        console.log('handleModalClose called');
+        this.showModal = false;
+    }
+
+    handleModalSubmit(event) {
+        const { supplierName, supplierABN, supplierContact } = event.detail;
+        console.log('Suggested Supplier:', supplierName, supplierABN, supplierContact);
+        this.handleModalClose();
     }
 }

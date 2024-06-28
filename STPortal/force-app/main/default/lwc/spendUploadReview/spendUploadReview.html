@@ -11,7 +11,10 @@
         <c-upload-spend-all-c-s-v></c-upload-spend-all-c-s-v>
     </template>
     <template if:true={step1Visible}>
-        <c-spend-upload-unmatched-a-b-n onvalidatedrecordschange={handleValidatedRecordsChange}></c-spend-upload-unmatched-a-b-n>
+        <c-spend-upload-unmatched-a-b-n 
+            onvalidatedrecordschange={handleValidatedRecordsChange}
+            onsuggestionsupplier={handleSuggestion}>
+        </c-spend-upload-unmatched-a-b-n>
     </template>
     <template if:true={step2Visible}>
         <c-spend-upload-unmatched-category></c-spend-upload-unmatched-category>
@@ -21,5 +24,12 @@
     </template>
     <template if:true={step4Visible}>
         <c-spend-upload-validate-record validated-records={validatedRecords}></c-spend-upload-validate-record>
+    </template>
+
+    <template if:true={showModal}>
+        <c-spend-suggest-supplier-modal 
+            onclose={handleModalClose}
+            onsubmit={handleModalSubmit}>
+        </c-spend-suggest-supplier-modal>
     </template>
 </template>
