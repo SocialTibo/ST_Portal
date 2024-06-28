@@ -21,7 +21,7 @@
                         <template if:true={error.searchResults.length}>
                             <ul class="slds-listbox slds-listbox_vertical" role="listbox">
                                 <template for:each={error.searchResults} for:item="account">
-                                    <li key={account.Id} class="slds-listbox__item" data-id={account.Id} data-name={account.Name} data-abn={error.ABN} onclick={handleResultClick}>
+                                    <li key={account.Id} class="slds-listbox__item" data-id={account.Id} data-name={account.Name} data-abn={error.ABN} data-account-abn={account.ABN__c} onclick={handleResultClick}>
                                         <a>
                                             <span class="slds-truncate" title={account.Name}>{account.Name} - {account.ABN__c}</span>
                                         </a>

@@ -84,21 +84,22 @@ export default class SpendUploadUnmatchedABN extends LightningElement {
         const accountId = event.currentTarget.dataset.id;
         const accountName = event.currentTarget.dataset.name;
         const abn = event.currentTarget.dataset.abn;
+        const accountAbn = event.currentTarget.dataset.accountAbn;
 
-        // Update the Supplier value in the corresponding error message
+        // Update the Supplier value and ABN in the corresponding error message
         this.errorMessages = this.errorMessages.map(error => {
             if (error.ABN === abn) {
                 // Add corrected record to validatedRecords
                 const updatedRecord = {
                     Amount__c: error.Amount,
                     Supplier__c: accountId,
-                    ABN__c: error.ABN,
+                    ABN__c: accountAbn,
                     Category__c: error.CategoryId, // Use CategoryId instead of name
                     Financial_Year__c: error['Financial Year']
                 };
                 this.validatedRecords = [...this.validatedRecords, updatedRecord];
 
-                return { ...error, Supplier: accountName, SupplierId: accountId, corrected: true, showSearch: false, searchResults: [] };
+                return { ...error, Supplier: accountName, ABN: accountAbn, SupplierId: accountId, corrected: true, showSearch: false, searchResults: [] };
             }
             return error;
         });
