@@ -45,22 +45,7 @@ export default class SpendUploadStepNavigation extends NavigationMixin(Lightning
     }
 
     handlePrevious() {
-        const steps = this.getSteps();
-        const currentIndex = steps.indexOf(this.currentStep);
-
-        if (currentIndex > 0) {
-            // Check if there is a previous visible step
-            const previousStep = steps[currentIndex - 1];
-            if (previousStep === 'step0' || !this.isStepVisible(previousStep)) {
-                // Navigate back to the upload page
-                this.navigateToUploadPage();
-            } else {
-                this.currentStep = previousStep;
-                this.dispatchStepChangeEvent();
-            }
-        } else {
-            this.navigateToUploadPage();
-        }
+        this.navigateToUploadPage();
     }
 
     handleNext() {
