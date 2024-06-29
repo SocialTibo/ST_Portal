@@ -1,0 +1,5 @@
+{
+  "apiName" : "block",
+  "type" : "sfdc_cms__brandingSet",
+  "path" : "brandingSets"
+}

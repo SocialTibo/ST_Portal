@@ -1,0 +1,19 @@
+<template>
+    <lightning-modal-header label="Suggest a Supplier"></lightning-modal-header>
+    <lightning-modal-body> 
+        <p>It seems XXXXX (with ABN XXXXXX) is not currently registered with Social Traders. 
+            If this is a Social Enterprise you're working with that would benefit from being registered with Social Traders then select suggest below and we will get in contact with the business.</p>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="textarea-id-01"></label>
+                <div class="slds-form-element__control">
+                  <textarea id="textarea-id-01" placeholder="Enter a comment (optional)" class="slds-textarea"></textarea>
+                </div>
+              </div>
+                  <p class="comments">This comment is for Social Traders staff and will not be shared with the social enterprise</p>
+        </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Suggest" onclick={handleOkay}></lightning-button>
+        <lightning-button label="cancel" onclick={handleCancel}></lightning-button>
+
+    </lightning-modal-footer>
+</template>

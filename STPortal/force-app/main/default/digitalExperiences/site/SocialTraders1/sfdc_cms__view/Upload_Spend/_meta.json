@@ -1,0 +1,5 @@
+{
+  "apiName" : "Upload_Spend",
+  "type" : "sfdc_cms__view",
+  "path" : "views"
+}

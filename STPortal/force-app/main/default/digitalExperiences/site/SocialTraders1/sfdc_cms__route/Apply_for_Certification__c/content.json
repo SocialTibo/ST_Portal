@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Apply for Certification",
+  "contentBody" : {
+    "activeViewId" : "Apply_for_Certification",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-apply-for-certification",
+    "urlPrefix" : "apply-for-certification"
+  }
+}

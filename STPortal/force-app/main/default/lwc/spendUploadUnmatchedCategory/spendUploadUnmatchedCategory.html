@@ -1,16 +1,26 @@
 <template>
-    <lightning-card title="Unmatched Categories" icon-name="utility:error">
-        <template if:true={errorMessages.length}>
-            <div class="slds-m-around_medium">
-                <template for:each={errorMessages} for:item="error">
-                    <p key={error} class="slds-text-color_error">{error}</p>
-                </template>
-            </div>
-        </template>
-        <template if:false={errorMessages.length}>
-            <div class="slds-m-around_medium">
-                <p>No errors found.</p>
-            </div>
-        </template>
-    </lightning-card>
+    <p>{errorMessages.length} Categories not found on Social Traders.</p>
+    <template if:true={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <template for:each={errorMessages} for:item="error">
+                <div key={error.Category} class="slds-box slds-m-bottom_small">
+                    <div class="record-container">
+                        <div class="label-item">
+                            <p><strong>Category:</strong> {error.Category} - <strong>{error.Description}</strong></p>
+                            <p>Spend of ${error.Amount} on DATE</p>
+                        </div>
+                        <div class="button-item">
+                            <lightning-button label="Find Category" class="slds-m-top_medium"></lightning-button>
+                            <lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <p>No errors found.</p>
+        </div>
+    </template>
 </template>

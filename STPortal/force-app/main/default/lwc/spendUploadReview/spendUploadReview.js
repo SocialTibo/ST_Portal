@@ -5,8 +5,9 @@ export default class SpendUploadReview extends LightningElement {
     @track validatedRecords = [];
     @track abnErrors = [];
     @track categoryErrors = [];
-    @track showCategoryErrors = false;
-    @track showAbnErrors = true; // Initially show ABN errors
+    @track amountErrors = [];
+    @track currentStep = 'step0';
+    @track showModal = false;
 
     @wire(CurrentPageReference)
     pageRef;
@@ -22,15 +23,60 @@ export default class SpendUploadReview extends LightningElement {
             if (this.pageRef.state.categoryErrors) {
                 this.categoryErrors = JSON.parse(this.pageRef.state.categoryErrors);
             }
+            if (this.pageRef.state.amountErrors) {
+                this.amountErrors = JSON.parse(this.pageRef.state.amountErrors);
+            }
+            if (this.pageRef.state.step) {
+                this.currentStep = this.pageRef.state.step;
+            }
         }
+        console.log('Connected callback - validatedRecords: ', JSON.stringify(this.validatedRecords));
     }
 
-    get hasAbnErrors() {
-        return this.abnErrors.length > 0;
+    get step0Visible() {
+        return this.currentStep === 'step0';
     }
 
-    handleShowCategoryErrors() {
-        this.showCategoryErrors = true;
-        this.showAbnErrors = false;
+    get step1Visible() {
+        return this.currentStep === 'step1';
+    }
+
+    get step2Visible() {
+        return this.currentStep === 'step2';
+    }
+
+    get step3Visible() {
+        return this.currentStep === 'step3';
+    }
+
+    get step4Visible() {
+        return this.currentStep === 'step4';
+    }
+
+    handleStepChange(event) {
+        this.currentStep = event.detail;
+        console.log('handleStepChange - currentStep: ', this.currentStep);
+    }
+
+    handleValidatedRecordsChange(event) {
+        const newValidatedRecords = event.detail;
+        this.validatedRecords = [...this.validatedRecords, ...newValidatedRecords];
+        console.log('handleValidatedRecordsChange - validatedRecords: ', JSON.stringify(this.validatedRecords));
+    }
+
+    handleSuggestion() {
+        console.log('handleSuggestion called');
+        this.showModal = true;
+    }
+
+    handleModalClose() {
+        console.log('handleModalClose called');
+        this.showModal = false;
+    }
+
+    handleModalSubmit(event) {
+        const { supplierName, supplierABN, supplierContact } = event.detail;
+        console.log('Suggested Supplier:', supplierName, supplierABN, supplierContact);
+        this.handleModalClose();
     }
 }

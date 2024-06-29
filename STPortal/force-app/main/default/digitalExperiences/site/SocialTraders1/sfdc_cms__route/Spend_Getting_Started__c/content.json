@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "Spend - Getting Started",
+  "contentBody" : {
+    "activeViewId" : "Spend_Getting_Started",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-spend-getting-started",
+    "urlPrefix" : "spend-getting-started"
+  }
+}

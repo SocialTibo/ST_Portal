@@ -1,0 +1,29 @@
+<template>
+    <p>Please resolve Invalid details</p>
+    <p>The system has flagged {errorMessages.length} missing or invalid data in some of your records.</p>
+    <p>Please use the tool below to fix the error or add the missing data prior to continuing.</p>
+    <template if:true={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <template for:each={errorMessages} for:item="error">
+                <div key={error.Amount} class="slds-box slds-m-bottom_small">
+                    <div class="record-container">
+                        <div class="label-item">
+                            <p><strong>Amount:</strong> {error.Amount} - <strong>{error.Description}</strong></p>
+                            <p>Other details here...</p>
+                        </div>
+                        <div class="button-item">
+                            <lightning-button label="Resolve Issue" class="slds-m-top_medium"></lightning-button>
+                            <lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <p>No errors found.</p>
+        </div>
+    </template>
+    <lightning-button label="Next" class="slds-m-top_medium" onclick={handleNext}></lightning-button>
+</template>

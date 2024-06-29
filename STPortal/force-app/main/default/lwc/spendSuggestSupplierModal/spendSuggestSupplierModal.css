@@ -1,0 +1,6 @@
+.comments {
+    font-size: 11px;
+}
+.large-textarea .slds-textarea {
+    height: 150px; /* Adjust the height as needed */
+}

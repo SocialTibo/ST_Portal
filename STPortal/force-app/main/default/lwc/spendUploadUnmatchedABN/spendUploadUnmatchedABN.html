@@ -1,27 +1,59 @@
 <template>
-		<lightning-card title="Unmatched ABNs" icon-name="utility:error">
-				<p>
-						{errorMessages.length} suppliers not found on Social Traders.
-				</p>
-				<template if:true={errorMessages.length}>
-						<div class="slds-m-around_medium">
-								<template for:each={errorMessages} for:item="error">
-										<div key={error.ABN} class="slds-box slds-m-bottom_small">
-												<p><strong>ABN:</strong> {error.ABN} - <strong>{error.Supplier}</strong></p>
-												<p>Spend of ${error.Amount} on DATE</p>
-												<!-- Add other fields  -->
-										</div>
-
-
-								</template>	<lightning-button label="Find Supplier" class="slds-m-top_medium"></lightning-button>
-								<lightning-button label="Remove" class="slds-m-top_medium"></lightning-button>
-						</div>
-				</template>
-				<template if:false={errorMessages.length}>
-						<div class="slds-m-around_medium">
-								<p>No errors found.</p>
-						</div>
-				</template>
-				<lightning-button label="Next" class="slds-m-top_medium" onclick={handleNext}></lightning-button>
-		</lightning-card>
+    <p>{errorMessages.length} suppliers were not found on Social Traders or the ABN is matching multiple Accounts.</p>
+    <p>You can find the correct Supplier below</p>
+    <template if:true={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <template for:each={errorMessages} for:item="error">
+                <div key={error.ABN} class={error.errorClass}>
+                    <div class="record-container">
+                        <div class="label-item">
+                            <p class={error.labelClass}><strong class="errorABN">ABN: {error.ABN}</strong> - <strong>{error.Supplier}</strong></p>
+                            <p class={error.labelClass}>Spend of ${error.Amount} on DATE</p>
+                        </div>
+                        <div class="button-item">
+                            <template if:false={error.removed}>
+                                <template if:false={error.corrected}>
+                                    <lightning-button label="Find Supplier" class="slds-m-top_medium" data-id={error.ABN} onclick={handleFindSupplier}></lightning-button>
+                                    <lightning-button label="Remove" class="slds-m-top_medium" data-id={error.ABN} onclick={handleRemove}></lightning-button>
+                                </template>
+                            </template>
+                            <template if:true={error.corrected}>
+                                <span class="text-corrected">
+                                    <span> Matched to Supplier</span>
+                                    <lightning-icon icon-name="action:approval" alternative-text="Approved" size="xx-small"></lightning-icon>
+                                </span>
+                            </template>
+                            <template if:true={error.removed}>
+                                <span class="text-removed">
+                                    <span> Record removed</span>
+                                    <lightning-icon icon-name="action:close" alternative-text="Closed" size="xx-small"></lightning-icon>
+                                </span>
+                            </template>
+                        </div>
+                    </div>
+                    <template if:true={error.showSearch}>
+                        <p>The ABN provided did not match any Social enterprise suppliers on our system. Search below to see if it is listed under an alternative ABN.</p>
+                        <lightning-input type="search" placeholder="Search for suppliers..." data-id={error.ABN} onchange={handleSearch}></lightning-input>
+                        <p>This supplier may not be registered with Social Traders. <span onclick={handleSuggestion}><strong class="suggestion">Click here to suggest supplier</strong></span></p>
+                        <template if:true={error.searchResults.length}>
+                            <ul class="slds-listbox slds-listbox_vertical" role="listbox">
+                                <template for:each={error.searchResults} for:item="account">
+                                    <li key={account.Id} class="slds-listbox__item" data-id={account.Id} data-name={account.Name} data-abn={error.ABN} data-account-abn={account.ABN__c} onclick={handleResultClick}>
+                                        <a>
+                                            <span class="slds-truncate" title={account.Name}>{account.Name} - {account.ABN__c}</span>
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template if:false={errorMessages.length}>
+        <div class="slds-m-around_medium">
+            <p>No errors found.</p>
+        </div>
+    </template>
 </template>

@@ -1,1 +1,49 @@
-.dummyClass{color:black;}
+.record-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;  
+    margin: 0 0 15px 0;
+}
+.errorABN{
+    color:red;
+}
+.removed {
+    background-color: lightgrey;
+}
+
+.corrected {
+    background-color: rgb(216 232 216);
+}
+
+.strikethrough {
+    text-decoration: line-through;
+    color: red;
+}
+
+.text-corrected, .text-removed {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.text-corrected {
+    color: black;
+}
+
+.text-removed {
+    color: black;
+}
+.suggestion{
+    color: rgb(100, 130, 183);
+    cursor: pointer;
+}
+.suggestion:hover {
+    color: darkblue;
+}

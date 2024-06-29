@@ -1,0 +1,6 @@
+{
+  "apiName" : "Spend_Dashboard__c",
+  "type" : "sfdc_cms__route",
+  "parentId" : "sfdc_cms__route/Spend_Getting_Started__c",
+  "path" : "routes"
+}

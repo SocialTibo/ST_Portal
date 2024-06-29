@@ -1,4 +1,4 @@
-.file-selector-large ,
+/*.file-selector-large ,
 .file-selector-large .slds-file-selector__dropzone,
 .file-selector-large .slds-file-selector__dropzone slot {
   width: 100%;
@@ -10,4 +10,8 @@
 
 .file-selector-large .slds-file-selector__dropzone slot .slds-file-selector__body {
     flex-direction: column;
+}*/
+
+.slds-file-selector__dropzone{
+  padding:10rem;
 }

@@ -1,30 +1,24 @@
 <template>
+    <div class="nav-container">
+        <template if:true={showPreviousButton}>
+            <lightning-button label="Previous" onclick={handlePrevious}></lightning-button>
+        </template>
+        <p class="step-label">{currentStepLabel}</p>
+        <template if:true={showNextButton}>
+            <lightning-button label="Next" onclick={handleNext}></lightning-button>
+        </template>
+    </div>
     <lightning-progress-indicator current-step={currentStep}>
-        <lightning-progress-step
-            label="Step One"
-            value="step1"
-            onstepblur={handleStepBlur}
-            onstepfocus={handleStepFocus}
-            onstepmouseenter={handleMouseEnter}
-            onstepmouseleave={handleMouseLeave}>
-        </lightning-progress-step>
-        <lightning-progress-step
-            label="Step Two"
-            value="step2"
-            onstepblur={handleStepBlur}
-            onstepfocus={handleStepFocus}
-            onstepmouseenter={handleMouseEnter}
-            onstepmouseleave={handleMouseLeave}>
-        </lightning-progress-step>
-        <lightning-progress-step
-            label="Step Three"
-            value="step3"
-            onstepblur={handleStepBlur}
-            onstepfocus={handleStepFocus}
-            onstepmouseenter={handleMouseEnter}
-            onstepmouseleave={handleMouseLeave}>
-        </lightning-progress-step>
+        <lightning-progress-step label="Upload Spend" value="step0"></lightning-progress-step>
+        <template if:true={showReviewABNStep}>
+            <lightning-progress-step label="Review ABN" value="step1" ></lightning-progress-step>
+        </template>
+        <template if:true={showReviewCategoryStep}>
+            <lightning-progress-step label="Review Category" value="step2"></lightning-progress-step>
+        </template>
+        <template if:true={showInvalidDetailsStep}>
+            <lightning-progress-step label="Invalid / Incomplete Details" value="step3"></lightning-progress-step>
+        </template>
+        <lightning-progress-step label="Submit" value="step4"></lightning-progress-step>
     </lightning-progress-indicator>
-
-   
 </template>

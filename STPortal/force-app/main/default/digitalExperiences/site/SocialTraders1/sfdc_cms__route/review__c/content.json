@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__route",
+  "title" : "review",
+  "contentBody" : {
+    "activeViewId" : "review",
+    "configurationTags" : [ ],
+    "pageAccess" : "UseParent",
+    "routeType" : "custom-review",
+    "urlPrefix" : "review"
+  }
+}

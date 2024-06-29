@@ -1,22 +1,44 @@
-import { LightningElement, track, api } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import validateSpendAllRecords from '@salesforce/apex/SpendService.validateSpendAllRecords';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import fileSelectorStyle from '@salesforce/resourceUrl/fileSelectorStyle';
+import getContactId from '@salesforce/apex/UserService.getContactId'; 
+import userId from '@salesforce/user/Id';
 
 export default class UploadSpendAllCSV extends NavigationMixin(LightningElement) {
     @track fileData;
     @track fileName;
     @track errorMessages = [];
     @track isLoading = false;
+    @track progressValue = 0;
     @track validatedRecords = [];
-  @api recordId;
+    @track contactId;
 
     expectedHeaders = ['Buyer', 'ABN', 'Supplier', 'Amount', 'Financial Year', 'Category'];
 
     get hasErrors() {
         return this.errorMessages.length > 0;
+    }
+
+    connectedCallback() {
+        Promise.all([
+            loadStyle(this, fileSelectorStyle)
+        ]);
+        this.fetchContactId();
+    }
+
+    fetchContactId() {
+        getContactId({ userId: userId })
+            .then(result => {
+                this.contactId = result;
+                console.log('result of fetchContactId: ' + result);
+            })
+            .catch(error => {
+                this.showError([{ text: 'Error fetching contact ID', class: 'error' }]);
+                console.error('Error fetching contact ID:', error);
+            });
     }
 
     handleFileUpload(event) {
@@ -29,6 +51,7 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 const csv = reader.result;
                 this.fileData = csv;
                 this.errorMessages = [];
+                this.importRecords();
             };
 
             reader.onerror = () => {
@@ -46,8 +69,12 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         }
 
         this.isLoading = true;
+        this.progressValue = 0;
 
         try {
+            // Simulate progress
+            this.incrementProgress();
+
             const rows = this.fileData.split('\n').filter(row => row.trim() !== '');
             const headers = rows[0].split(',').map(header => header.trim());
 
@@ -71,15 +98,20 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
                 return record;
             });
 
-            const validationResult = await validateSpendAllRecords({ spendAllRecords });
+            const validationResult = await validateSpendAllRecords({ spendAllRecords, contactId: this.contactId });
 
             this.validatedRecords = validationResult.validRecords;
-            this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors);
+            console.log('Validated Records after validation: ', this.validatedRecords);
+
+            // Simulate delay to show progress bar for at least 2 seconds
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            this.navigateToReviewPage(validationResult.abnErrors, validationResult.categoryErrors, validationResult.amountErrors);
 
         } catch (error) {
-            this.showError([{ text: 'Error processing CSV data: ' + error.message, class: 'error' }]);
+            this.logError(error);
+            this.showError([{ text: 'Error processing CSV data', class: 'error' }]);
             console.error('Error processing CSV data:', error);
-        } finally {
             this.isLoading = false;
         }
     }
@@ -103,6 +135,8 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         this.fileData = null;
         this.fileName = null;
         this.validatedRecords = [];
+        this.isLoading = false;
+        this.progressValue = 0;
 
         const fileInput = this.template.querySelector('lightning-input[type="file"]');
         if (fileInput) {
@@ -124,7 +158,10 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
         this.dispatchEvent(event);
     }
 
-    navigateToReviewPage(abnErrors, categoryErrors) {
+    navigateToReviewPage(abnErrors, categoryErrors, amountErrors) {
+        const nextStep = abnErrors.length > 0 ? 'step1' : (categoryErrors.length > 0 ? 'step2' : (amountErrors.length > 0 ? 'step3' : 'step4'));
+
+        // Navigate to the review page
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -133,31 +170,48 @@ export default class UploadSpendAllCSV extends NavigationMixin(LightningElement)
             state: {
                 validatedRecords: JSON.stringify(this.validatedRecords),
                 abnErrors: JSON.stringify(abnErrors),
-                categoryErrors: JSON.stringify(categoryErrors)
+                categoryErrors: JSON.stringify(categoryErrors),
+                amountErrors: JSON.stringify(amountErrors),
+                step: nextStep 
             }
         });
-    }
-		
-		
-		// load style & Upload component
-    get acceptedFormats() {
-        return ['.csv'];
-    }
 
-    connectedCallback() {
-        Promise.all([
-            loadStyle(this, fileSelectorStyle)
-        ]);
-    }
+        // Stop loading indicator after navigation
+        this.isLoading = false;
 
-    handleUploadFinished(event) {
-        const uploadedFiles = event.detail.files.length;
-        const evt = new ShowToastEvent({
-            title: 'SUCCESS',
-            message: uploadedFiles + ' File(s) uploaded  successfully',
-            variant: 'success',
+        // Dispatch a custom event to move to the next step
+        const event = new CustomEvent('stepchange', {
+            detail: nextStep
         });
-        this.dispatchEvent(evt);
+        this.dispatchEvent(event);
     }
 
+    incrementProgress() {
+        if (this.progressValue < 100) {
+            this.progressValue += 20;
+            setTimeout(() => this.incrementProgress(), 100);
+        }
+    }
+
+    logError(error) {
+        let errorMessage = '';
+
+        if (error && typeof error === 'object') {
+            try {
+                errorMessage = JSON.stringify(error, null, 2);
+            } catch (e) {
+                errorMessage = error.toString();
+            }
+        } else {
+            errorMessage = error.toString();
+        }
+
+        const logEntry = {
+            message: error.message || errorMessage,
+            stack: error.stack || '',
+            extra: errorMessage
+        };
+
+        console.error('Error log:', logEntry);
+    }
 }

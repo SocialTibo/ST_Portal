@@ -1,0 +1,5 @@
+{
+  "apiName" : "Spend_Dashboard",
+  "type" : "sfdc_cms__view",
+  "path" : "views"
+}

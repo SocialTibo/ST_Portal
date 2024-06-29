@@ -1,101 +1,96 @@
-import { LightningElement, api, wire } from 'lwc';
-import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
+import { LightningElement, api } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
 export default class SpendUploadStepNavigation extends NavigationMixin(LightningElement) {
-    @api pageName;
+    @api currentStep = 'step0';
+    @api abnErrors = [];
+    @api categoryErrors = [];
+    @api amountErrors = [];
 
-    @wire(CurrentPageReference)
-    pageRef;
-
-    get currentStep() {
-        console.log('current page reference:', this.pageRef);
-
-        // Determine the pageName based on the page reference
-        if (this.pageRef && this.pageRef.attributes) {
-            this.pageName = this.pageRef.attributes.name;
-        }
-
-        console.log('page name: ' + this.pageName);
-
-        switch (this.pageName) {
-            case 'Upload_Spend__c':
-                return 'Upload CSV';
-            case 'unmatched_supplier__c':
-                return 'Review Errors';
-            case 'Final':
-                return 'Confirm Upload';
+    get currentStepLabel() {
+        switch (this.currentStep) {
+            case 'step0':
+                return 'Upload Spend';
+            case 'step1':
+                return 'Review ABN';
+            case 'step2':
+                return 'Review Category';
+            case 'step3':
+                return 'Invalid / Incomplete Details';
+            case 'step4':
+                return 'Submit';
             default:
-                return 'Upload CSV';
+                return 'Upload Spend';
         }
     }
 
-    navigateToStep(step) {
-        let pageName;
+    get showPreviousButton() {
+        return this.currentStep !== 'step0';
+    }
+
+    get showNextButton() {
+        return this.currentStep !== 'step0' && this.currentStep !== 'step4';
+    }
+
+    get showReviewABNStep() {
+        return this.abnErrors.length > 0;
+    }
+
+    get showReviewCategoryStep() {
+        return this.categoryErrors.length > 0;
+    }
+
+    get showInvalidDetailsStep() {
+        return this.amountErrors.length > 0;
+    }
+
+    handlePrevious() {
+        this.navigateToUploadPage();
+    }
+
+    handleNext() {
+        const steps = this.getSteps();
+        const currentIndex = steps.indexOf(this.currentStep);
+        if (currentIndex < steps.length - 1) {
+            this.currentStep = steps[currentIndex + 1];
+            this.dispatchStepChangeEvent();
+        }
+    }
+
+    getSteps() {
+        const steps = ['step0', 'step1', 'step2', 'step3', 'step4'];
+        if (this.abnErrors.length === 0) steps.splice(steps.indexOf('step1'), 1);
+        if (this.categoryErrors.length === 0) steps.splice(steps.indexOf('step2'), 1);
+        if (this.amountErrors.length === 0) steps.splice(steps.indexOf('step3'), 1);
+        return steps;
+    }
+
+    isStepVisible(step) {
         switch (step) {
             case 'step1':
-                pageName = 'Upload_Spend__c';
-                break;
+                return this.abnErrors.length > 0;
             case 'step2':
-                pageName = 'unmatched_supplier__c';
-                break;
+                return this.categoryErrors.length > 0;
             case 'step3':
-                pageName = 'Final';
-                break;
+                return this.amountErrors.length > 0;
             default:
-                pageName = 'Upload_Spend__c';
+                return false;
         }
-        
+    }
+
+    navigateToUploadPage() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: pageName
+                name: 'Upload_Spend__c'
             }
         });
     }
 
-    handlePrevious() {
-        switch (this.currentStep) {
-            case 'step2':
-                this.navigateToStep('step1');
-                break;
-            case 'step3':
-                this.navigateToStep('step2');
-                break;
-            default:
-                this.navigateToStep('step1');
-        }
-    }
-
-    handleNext() {
-        switch (this.currentStep) {
-            case 'step1':
-                this.navigateToStep('step2');
-                break;
-            case 'step2':
-                this.navigateToStep('step3');
-                break;
-            default:
-                this.navigateToStep('step1');
-        }
-    }
-
-    handleStepBlur(event) {
-        const stepIndex = event.detail.index;
-        console.log('Step blur:', stepIndex);
-    }
-
-    handleStepFocus(event) {
-        const stepIndex = event.detail.index;
-        console.log('Step focus:', stepIndex);
-    }
-
-    handleMouseEnter(event) {
-        const stepIndex = event.detail.index;
-        console.log('Mouse enter:', stepIndex);
-    }
-
-    handleMouseLeave(event) {
-        const stepIndex = event.detail.index;
-        console.log('Mouse leave:', stepIndex);
+    dispatchStepChangeEvent() {
+        const event = new CustomEvent('stepchange', {
+            detail: this.currentStep
+        });
+        this.dispatchEvent(event);
     }
 }
